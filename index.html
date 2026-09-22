@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RESET 21 — Mi Plan de 21 Días</title>
+<meta name="description" content="RESET 21 — método de 21 días para ordenar tu vida. Ebook completo + 7 bonos + herramientas, por Silvi Aura.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#140f1b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RESET 21">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --brand:#da5db0;
+  --accent:#7f45e3;
+  --gold:#e6c17a;
+  --bg:#140f1b;
+  --bg-2:#1b1526;
+  --surface:#221a2e;
+  --surface-2:#2b2139;
+  --line:rgba(230,193,122,.18);
+  --text:#f6f0f7;
+  --text-soft:#c3b6cf;
+  --text-dim:#8d7fa0;
+  --shadow:0 18px 40px -22px rgba(0,0,0,.85);
+  --grad:linear-gradient(120deg,var(--brand),var(--accent));
+  --radius-card:18px;
+  --ok:#6fd3a5;
+}
+[data-theme="light"]{
+  --bg:#fbf6f9;
+  --bg-2:#fff;
+  --surface:#ffffff;
+  --surface-2:#f6edf4;
+  --line:rgba(127,69,227,.16);
+  --text:#2a1c33;
+  --text-soft:#5d4b6b;
+  --text-dim:#8f7f9b;
+  --gold:#b08636;
+  --shadow:0 16px 36px -24px rgba(90,40,110,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Jost',system-ui,sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background .4s ease,color .4s ease;
+}
+button,.clickable{-webkit-tap-highlight-color:rgba(0,0,0,0);touch-action:manipulation;cursor:pointer}
+button{font-family:inherit;color:inherit;border:none;background:none}
+input,textarea,select{font-family:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:.01em}
+::selection{background:var(--brand);color:#fff}
+
+/* ============ BIENVENIDA ============ */
+#welcome{
+  position:fixed;inset:0;z-index:999;
+  background:
+    radial-gradient(1100px 600px at 15% -10%,rgba(218,93,176,.35),transparent 60%),
+    radial-gradient(900px 700px at 110% 100%,rgba(127,69,227,.4),transparent 60%),
+    var(--bg);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:34px 26px calc(34px + env(safe-area-inset-bottom));
+}
+#welcome .halo{
+  position:absolute;width:min(78vw,420px);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgba(230,193,122,.25);
+  animation:breathe 7s ease-in-out infinite;pointer-events:none;
+}
+#welcome .halo.b{width:min(55vw,300px);animation-delay:-3s;border-color:rgba(218,93,176,.3)}
+@keyframes breathe{0%,100%{transform:scale(.96);opacity:.5}50%{transform:scale(1.06);opacity:1}}
+.w-kicker{color:var(--gold);font-size:.72rem;letter-spacing:.42em;margin-bottom:18px;position:relative;font-weight:400}
+.w-title{font-size:clamp(4.2rem,24vw,8rem);line-height:.82;position:relative;font-weight:300}
+.w-title b{display:block;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.w-quote{
+  position:relative;max-width:30ch;margin:26px auto 30px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.25rem,5vw,1.7rem);
+  line-height:1.35;color:var(--text-soft);
+}
+.w-sign{position:relative;color:var(--text-dim);font-size:.78rem;letter-spacing:.3em;margin-top:6px}
+.btn-start{
+  position:relative;z-index:5;
+  background:var(--grad);color:#fff;font-weight:500;letter-spacing:.08em;
+  padding:0 38px;min-height:56px;border-radius:50px;font-size:1rem;
+  box-shadow:0 14px 34px -14px rgba(218,93,176,.9);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:transform .18s ease;
+}
+.btn-start:active{transform:scale(.96)}
+
+/* ============ ACCESO (CÓDIGO) ============ */
+#gate{
+  position:fixed;inset:0;z-index:1000;
+  background:
+    radial-gradient(1100px 600px at 15% -10%,rgba(218,93,176,.35),transparent 60%),
+    radial-gradient(900px 700px at 110% 100%,rgba(127,69,227,.4),transparent 60%),
+    var(--bg);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:34px 26px calc(34px + env(safe-area-inset-bottom));
+}
+#gate .halo{
+  position:absolute;width:min(78vw,420px);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgba(230,193,122,.25);
+  animation:breathe 7s ease-in-out infinite;pointer-events:none;
+}
+#gate .halo.b{width:min(55vw,300px);animation-delay:-3s;border-color:rgba(218,93,176,.3)}
+#gate input:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* ============ SHELL ============ */
+#app{display:none;min-height:100vh}
+#app.on{display:block}
+header.top{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:12px 18px calc(12px + env(safe-area-inset-top)) 18px;
+  padding-top:max(12px,env(safe-area-inset-top));
+}
+.top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:.02em;flex:1}
+.logo span{color:var(--brand)}
+.icon-btn{
+  width:48px;height:48px;border-radius:50px;display:grid;place-items:center;font-size:1.15rem;
+  border:1px solid var(--line);background:var(--surface);transition:transform .15s ease;
+}
+.icon-btn:active{transform:scale(.92)}
+.pbar{max-width:1180px;margin:11px auto 0;display:flex;align-items:center;gap:11px}
+.pbar .track{flex:1;height:7px;border-radius:50px;background:var(--surface-2);overflow:hidden}
+.pbar .fill{height:100%;width:0;border-radius:50px;background:var(--grad);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.pbar .num{font-size:.74rem;color:var(--text-dim);letter-spacing:.12em;white-space:nowrap}
+
+main{max-width:1180px;margin:0 auto;padding:22px 18px 130px}
+section.view{display:none;animation:rise .45s ease both}
+section.view.on{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.eyebrow{color:var(--gold);font-size:.7rem;letter-spacing:.34em;margin-bottom:8px}
+.h-view{font-size:clamp(2rem,8vw,2.9rem);margin-bottom:6px;font-weight:400}
+.sub{color:var(--text-soft);max-width:62ch;margin-bottom:22px;font-size:.96rem}
+
+/* ============ NAV ============ */
+nav.bottom{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:color-mix(in srgb,var(--bg-2) 94%,transparent);
+  backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+  display:flex;overflow-x:auto;scrollbar-width:none;gap:2px;
+}
+nav.bottom::-webkit-scrollbar{display:none}
+.nav-b{
+  flex:0 0 auto;min-width:72px;min-height:56px;border-radius:16px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  color:var(--text-dim);font-size:.62rem;letter-spacing:.06em;padding:4px 8px;
+  transition:color .2s ease,background .2s ease;
+}
+.nav-b i{font-style:normal;font-size:1.22rem;line-height:1}
+.nav-b.on{color:var(--text);background:var(--surface)}
+.nav-b.on i{filter:drop-shadow(0 0 10px rgba(218,93,176,.8))}
+
+/* ============ CARDS ============ */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);
+  box-shadow:var(--shadow);padding:20px;margin-bottom:16px;
+}
+.grid{display:grid;gap:14px}
+@media(min-width:760px){.grid.g2{grid-template-columns:1fr 1fr}.grid.g3{grid-template-columns:repeat(3,1fr)}}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:48px;padding:0 24px;border-radius:50px;font-size:.92rem;font-weight:500;letter-spacing:.04em;
+  background:var(--grad);color:#fff;box-shadow:0 12px 26px -16px rgba(218,93,176,.95);
+  transition:transform .15s ease,filter .2s ease;
+}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);box-shadow:none}
+.btn.gold{background:linear-gradient(120deg,var(--gold),#f0d9a8);color:#2a1c33;box-shadow:none}
+.btn.sm{min-height:44px;padding:0 18px;font-size:.82rem}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.quote{
+  border-left:3px solid var(--brand);padding:4px 0 4px 16px;margin:16px 0;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;line-height:1.4;color:var(--text-soft);
+}
+.tip{
+  background:linear-gradient(120deg,rgba(230,193,122,.12),rgba(218,93,176,.08));
+  border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:.9rem;color:var(--text-soft);
+}
+.tip b{color:var(--gold);font-weight:500}
+textarea,input[type=text]{
+  width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;
+  padding:13px 15px;font-size:.95rem;font-weight:300;resize:vertical;line-height:1.55;
+}
+textarea::placeholder,input::placeholder{color:var(--text-dim)}
+.label{font-size:.78rem;color:var(--text-dim);letter-spacing:.14em;margin-bottom:8px}
+.toast{
+  position:fixed;left:50%;bottom:96px;transform:translate(-50%,26px);z-index:400;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--text);
+  padding:12px 20px;border-radius:50px;font-size:.86rem;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:all .3s ease;max-width:88vw;text-align:center;
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ============ INICIO ============ */
+.hero{
+  position:relative;overflow:hidden;border-radius:24px;padding:26px 22px;margin-bottom:18px;
+  background:linear-gradient(150deg,rgba(218,93,176,.22),rgba(127,69,227,.26));
+  border:1px solid var(--line);
+}
+.hero h2{font-size:clamp(1.9rem,7.5vw,2.6rem);font-weight:400;margin-bottom:4px}
+.hero p{color:var(--text-soft);font-size:.94rem;margin-bottom:18px;max-width:40ch}
+.ring{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.ring .circle{
+  width:96px;height:96px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+  background:conic-gradient(var(--brand) 0deg,var(--accent) 0deg,var(--surface-2) 0deg);
+  transition:background .7s ease;
+}
+.ring .circle span{
+  width:76px;height:76px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;
+}
+.ring .meta b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;line-height:1.1}
+.ring .meta small{color:var(--text-dim);font-size:.8rem}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 10px;text-align:center}
+.stat b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:var(--brand)}
+.stat small{font-size:.7rem;color:var(--text-dim);letter-spacing:.1em}
+.quick{display:grid;gap:10px}
+@media(min-width:640px){.quick{grid-template-columns:1fr 1fr}}
+.quick button{
+  display:flex;align-items:center;gap:13px;text-align:left;min-height:64px;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 16px;
+  transition:transform .15s ease;
+}
+.quick button:active{transform:scale(.985)}
+.quick i{font-style:normal;font-size:1.5rem}
+.quick b{font-weight:500;font-size:.95rem;display:block}
+.quick small{color:var(--text-dim);font-size:.78rem}
+
+/* ============ DÍAS ============ */
+.stages{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.chip{
+  min-height:44px;padding:0 16px;border-radius:50px;border:1px solid var(--line);
+  background:var(--surface);font-size:.8rem;letter-spacing:.08em;color:var(--text-soft);
+  display:inline-flex;align-items:center;
+}
+.chip.on{background:var(--grad);color:#fff;border-color:transparent}
+.days-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px}
+.day-cell{
+  aspect-ratio:1;border-radius:16px;border:1px solid var(--line);background:var(--surface);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  min-height:84px;position:relative;overflow:hidden;transition:transform .15s ease;
+}
+.day-cell:active{transform:scale(.95)}
+.day-cell u{text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;line-height:1}
+.day-cell small{font-size:.6rem;color:var(--text-dim);letter-spacing:.1em;text-align:center;padding:0 4px}
+.day-cell.done{background:var(--grad);border-color:transparent;color:#fff}
+.day-cell.done small{color:rgba(255,255,255,.85)}
+.day-cell.today{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.day-cell .tick{position:absolute;top:6px;right:8px;font-size:.75rem}
+
+.day-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:6px}
+.day-num{
+  font-family:'Cormorant Garamond',serif;font-size:3.3rem;font-weight:700;line-height:.85;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.day-meta{font-size:.72rem;color:var(--gold);letter-spacing:.2em;margin-bottom:14px}
+ol.steps{list-style:none;counter-reset:s;display:grid;gap:12px;margin:4px 0 18px}
+ol.steps li{counter-increment:s;display:flex;gap:13px;font-size:.95rem;color:var(--text-soft);line-height:1.55}
+ol.steps li::before{
+  content:counter(s);flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--gold);
+  font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:700;
+}
+ol.steps li b{color:var(--text);font-weight:500}
+.why{font-size:.95rem;color:var(--text-soft);margin-bottom:14px}
+.why h4{font-size:1.3rem;font-weight:600;margin-bottom:4px;color:var(--text)}
+.day-nav{display:flex;gap:10px;margin-top:18px}
+.day-nav .btn{flex:1}
+
+/* ============ EXPANDIBLES ============ */
+.acc{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden}
+.acc>button{
+  width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:16px;min-height:60px;
+}
+.acc>button b{flex:1;font-weight:500;font-size:.98rem}
+.acc>button i{font-style:normal;font-size:1.3rem}
+.acc>button em{font-style:normal;color:var(--brand);font-size:1.3rem;transition:transform .3s ease}
+.acc.open>button em{transform:rotate(45deg)}
+.acc .body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.2,.8,.2,1)}
+.acc .body>div{padding:0 16px 18px;color:var(--text-soft);font-size:.93rem}
+
+/* ============ CHECKLIST ============ */
+.check{
+  display:flex;align-items:center;gap:13px;width:100%;text-align:left;
+  padding:13px 15px;min-height:56px;border-radius:14px;background:var(--surface-2);
+  border:1px solid transparent;margin-bottom:9px;font-size:.93rem;color:var(--text-soft);
+  transition:background .2s ease;
+}
+.check .box{
+  flex:0 0 26px;height:26px;border-radius:9px;border:1.5px solid var(--text-dim);
+  display:grid;place-items:center;font-size:.85rem;color:transparent;transition:all .2s ease;
+}
+.check.on{background:linear-gradient(120deg,rgba(218,93,176,.18),rgba(127,69,227,.16));border-color:var(--line);color:var(--text)}
+.check.on .box{background:var(--grad);border-color:transparent;color:#fff}
+
+/* ============ AGUA ============ */
+.glasses{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:6px 0 18px}
+@media(min-width:520px){.glasses{grid-template-columns:repeat(8,1fr)}}
+.glass{
+  aspect-ratio:.72;border-radius:12px 12px 18px 18px;border:1.5px solid var(--line);
+  background:var(--surface-2);position:relative;overflow:hidden;min-height:56px;
+  display:grid;place-items:center;font-size:1.15rem;color:var(--text-dim);
+}
+.glass .water{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,var(--brand),var(--accent));transition:height .4s ease}
+.glass.on{color:#fff;border-color:transparent}
+.glass.on .water{height:100%}
+.glass span{position:relative;z-index:2}
+.week-bars{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:6px}
+.week-bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%}
+.week-bars .bar{width:100%;border-radius:50px 50px 8px 8px;background:var(--grad);min-height:4px;transition:height .5s ease}
+.week-bars small{font-size:.66rem;color:var(--text-dim)}
+
+/* ============ RULETA ============ */
+.wheel-wrap{position:relative;width:min(84vw,340px);margin:6px auto 22px}
+.wheel-wrap::before{
+  content:"";position:absolute;top:-8px;left:50%;transform:translateX(-50%);
+  border-left:13px solid transparent;border-right:13px solid transparent;border-top:22px solid var(--gold);
+  z-index:5;filter:drop-shadow(0 3px 5px rgba(0,0,0,.5));
+}
+#wheel{
+  width:100%;aspect-ratio:1;border-radius:50%;border:6px solid var(--surface);
+  box-shadow:0 0 0 2px var(--gold),0 24px 50px -24px rgba(0,0,0,.9);
+  transition:transform 4.4s cubic-bezier(.14,.72,.11,1);
+}
+.wheel-hub{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:50%;background:var(--bg-2);border:2px solid var(--gold);
+  display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:.85rem;
+  letter-spacing:.1em;color:var(--gold);z-index:4;
+}
+#wheelResult{text-align:center;min-height:80px}
+#wheelResult h3{font-size:1.5rem;margin-bottom:4px}
+#wheelResult p{color:var(--text-soft);font-size:.93rem;max-width:34ch;margin:0 auto}
+
+/* ============ TEST / QUIZ ============ */
+.scale{display:flex;gap:7px;margin-top:9px}
+.scale button{
+  flex:1;min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);
+  font-size:.95rem;color:var(--text-soft);transition:all .18s ease;
+}
+.scale button.on{background:var(--grad);color:#fff;border-color:transparent;transform:translateY(-2px)}
+.q-item{padding:16px 0;border-bottom:1px solid var(--line)}
+.q-item:last-child{border-bottom:none}
+.q-item p{font-size:.95rem}
+.opt{
+  display:block;width:100%;text-align:left;padding:14px 16px;min-height:52px;border-radius:14px;
+  background:var(--surface-2);border:1px solid transparent;margin-bottom:9px;font-size:.92rem;color:var(--text-soft);
+}
+.opt.right{background:rgba(111,211,165,.16);border-color:var(--ok);color:var(--text)}
+.opt.wrong{background:rgba(218,93,176,.14);border-color:var(--brand);color:var(--text)}
+.result-box{text-align:center;padding:26px 20px}
+.result-box .big{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ============ CARRUSEL ============ */
+.carousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.slide{
+  flex:0 0 84%;scroll-snap-align:center;border-radius:20px;padding:26px 22px;min-height:230px;
+  background:linear-gradient(155deg,rgba(218,93,176,.16),rgba(127,69,227,.2));
+  border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;
+}
+@media(min-width:760px){.slide{flex:0 0 46%}}
+.slide .n{color:var(--gold);font-size:.7rem;letter-spacing:.3em;margin-bottom:14px}
+.slide q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;line-height:1.3;quotes:none}
+.slide small{margin-top:16px;color:var(--text-dim);font-size:.76rem;letter-spacing:.12em}
+
+/* ============ LOGROS ============ */
+.medals{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.medal{
+  border-radius:18px;border:1px solid var(--line);background:var(--surface);padding:18px 14px;text-align:center;
+  opacity:.42;filter:grayscale(1);transition:all .4s ease;
+}
+.medal.on{opacity:1;filter:none;background:linear-gradient(155deg,rgba(230,193,122,.16),rgba(218,93,176,.12))}
+.medal i{font-style:normal;font-size:2.1rem;display:block;margin-bottom:8px}
+.medal b{display:block;font-size:.88rem;font-weight:500;margin-bottom:3px}
+.medal small{font-size:.72rem;color:var(--text-dim);line-height:1.4;display:block}
+
+/* ============ TRACKER ============ */
+.tracker{overflow-x:auto;scrollbar-width:none;padding-bottom:6px}
+.tracker::-webkit-scrollbar{display:none}
+.tracker table{border-collapse:separate;border-spacing:5px;min-width:100%}
+.tracker th{font-size:.68rem;color:var(--text-dim);font-weight:400;letter-spacing:.06em;text-align:left;padding-right:8px;white-space:nowrap}
+.tracker td button{width:30px;height:30px;border-radius:9px;background:var(--surface-2);border:1px solid var(--line);font-size:.62rem;color:var(--text-dim)}
+.tracker td button.on{background:var(--grad);border-color:transparent;color:#fff}
+
+/* ============ DIARIO ============ */
+.entry{background:var(--surface-2);border-radius:14px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--line)}
+.entry header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:7px}
+.entry time{font-size:.72rem;color:var(--gold);letter-spacing:.12em}
+.entry p{font-size:.92rem;color:var(--text-soft);white-space:pre-wrap}
+.entry button{font-size:.75rem;color:var(--text-dim);min-height:36px;padding:0 8px}
+
+/* ============ CELEBRACIÓN ============ */
+#celebrate{position:fixed;inset:0;z-index:900;display:none;place-items:center;padding:24px;background:rgba(10,6,16,.8);backdrop-filter:blur(8px)}
+#celebrate.on{display:grid}
+.cel-card{
+  background:var(--bg-2);border:1px solid var(--gold);border-radius:24px;padding:34px 26px;text-align:center;
+  max-width:380px;box-shadow:0 30px 70px -30px #000;animation:pop .5s cubic-bezier(.2,1.4,.4,1) both;
+}
+@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+.cel-card .em{font-size:3.4rem;display:block;margin-bottom:10px}
+.cel-card h3{font-size:2rem;margin-bottom:8px}
+.cel-card p{color:var(--text-soft);font-size:.95rem;margin-bottom:20px}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:899;overflow:hidden}
+.confetti i{position:absolute;width:9px;height:14px;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(108vh) rotate(720deg);opacity:0}}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ============ DESKTOP ============ */
+@media(min-width:960px){
+  nav.bottom{
+    top:0;bottom:0;left:0;right:auto;width:212px;flex-direction:column;overflow-y:auto;
+    border-top:none;border-right:1px solid var(--line);padding:22px 12px;gap:4px;justify-content:flex-start;
+  }
+  .nav-b{flex-direction:row;justify-content:flex-start;width:100%;gap:12px;font-size:.82rem;letter-spacing:.04em;padding:0 16px}
+  .nav-b i{font-size:1.15rem}
+  header.top{padding-left:230px}
+  main{padding-left:230px;padding-bottom:60px;max-width:1220px}
+  .nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;padding:0 16px 18px;color:var(--text)}
+  .nav-brand span{color:var(--brand)}
+}
+@media(max-width:959px){.nav-brand{display:none}}
+
+/* ============ LECTOR ============ */
+.lib-head{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.search{flex:1;min-width:180px;position:relative}
+.search input{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:50px;padding:12px 16px 12px 40px;font-size:.92rem}
+.search::before{content:"🔎";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:.9rem;opacity:.7}
+.fs-ctl{display:flex;gap:4px}
+.fs-ctl button{width:42px;height:42px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:.95rem;color:var(--text-soft)}
+.grp{margin-bottom:14px;border:1px solid var(--line);border-radius:var(--radius-card);background:var(--surface);overflow:hidden}
+.grp>button.gh{width:100%;display:flex;align-items:center;gap:12px;padding:16px 18px;text-align:left}
+.grp>button.gh i{font-style:normal;font-size:1.3rem}
+.grp>button.gh b{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;flex:1}
+.grp>button.gh small{color:var(--text-dim);font-size:.72rem;letter-spacing:.08em}
+.grp .glist{display:none;padding:0 10px 10px}
+.grp.open .glist{display:block}
+.sec-b{width:100%;display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;text-align:left;border:1px solid transparent}
+.sec-b:hover{background:var(--surface-2)}
+.sec-b .dot{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--bg)}
+.sec-b.leida .dot{background:var(--brand);border-color:var(--brand)}
+.sec-b span{flex:1}
+.sec-b b{display:block;font-size:.95rem;font-weight:400}
+.sec-b small{color:var(--text-dim);font-size:.72rem;letter-spacing:.06em}
+.reader{max-width:none}
+.reader.fs2{font-size:1.09rem}
+.reader.fs3{font-size:1.22rem}
+.reader .lp{margin-bottom:14px;color:var(--text-soft);line-height:1.75}
+.reader .lh{font-size:1.35em;margin:26px 0 12px;color:var(--text)}
+.reader .lul{margin:0 0 16px 18px;color:var(--text-soft)}
+.reader .lul li{margin-bottom:8px;line-height:1.6}
+.reader .steps li{line-height:1.65}
+.read-meta{color:var(--gold);font-size:.7rem;letter-spacing:.28em;margin-bottom:8px}
+.kvt{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.kvt div{display:flex;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:.92rem}
+.kvt div:last-child{border-bottom:none}
+.kvt div b{min-width:92px;color:var(--gold);font-weight:500;font-size:.78rem;letter-spacing:.08em;align-self:center}
+.numc{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+.numc u{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;text-decoration:none;font-weight:500}
+.numc b{display:block;margin-bottom:4px;font-family:'Cormorant Garamond',serif;font-size:1.2em;font-weight:600}
+.numc p{color:var(--text-soft);font-size:.94em;line-height:1.6}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:.72rem;letter-spacing:.14em;color:var(--gold);margin-bottom:6px;text-transform:uppercase}
+.fld input,.fld textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.95rem;line-height:1.6}
+.fld textarea{resize:vertical}
+.tmr{display:flex;align-items:center;gap:14px;background:var(--surface-2);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:16px;flex-wrap:wrap}
+.tmr b{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;min-width:92px}
+.tmr span{flex:1;font-size:.82rem;color:var(--text-dim);letter-spacing:.06em}
+.tr30{overflow-x:auto;margin-bottom:16px}
+.tr30 table{border-collapse:collapse;width:100%;min-width:330px}
+.tr30 th{font-size:.62rem;letter-spacing:.1em;color:var(--gold);font-weight:500;padding:8px 4px;text-align:center}
+.tr30 td{padding:3px;text-align:center;border-top:1px solid var(--line)}
+.tr30 td.d{font-size:.74rem;color:var(--text-dim);text-align:left;padding-left:6px;white-space:nowrap}
+.tr30 button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);color:transparent;font-size:.75rem}
+.tr30 button.on{background:var(--grad);border-color:transparent;color:#fff}
+.tr30 input{width:100%;min-width:88px;background:transparent;border:none;border-bottom:1px solid var(--line);font-size:.8rem;padding:4px 2px}
+.resum{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.resum div{flex:1;min-width:90px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.resum b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--brand)}
+.resum small{font-size:.66rem;letter-spacing:.12em;color:var(--text-dim)}
+.read-nav{display:flex;gap:10px;margin-top:20px}
+.lib-bar{height:6px;border-radius:50px;background:var(--surface-2);overflow:hidden;margin:4px 0 18px}
+.lib-bar i{display:block;height:100%;background:var(--grad);border-radius:50px;transition:width .5s ease}
+.reader .lq{font-family:'Cormorant Garamond',serif;font-size:1.45em;line-height:1.35;text-align:center;color:var(--text);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 12px;margin:22px 0}
+.reader .lq::before{content:"";display:block;width:34px;height:1px;background:var(--gold);margin:0 auto 14px}
+/* ============ INSTALAR / MODAL ============ */
+.install-b{display:none;align-items:center;gap:7px;background:var(--grad);color:#fff;border-radius:50px;padding:9px 16px;font-size:.78rem;letter-spacing:.05em;font-weight:500}
+.install-b.on{display:inline-flex}
+#modal{position:fixed;inset:0;z-index:980;background:rgba(8,4,14,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:22px}
+#modal.on{display:flex}
+#modal .m-card{background:var(--bg-2);border:1px solid var(--line);border-radius:22px;padding:26px;max-width:440px;width:100%;max-height:86vh;overflow-y:auto;box-shadow:var(--shadow)}
+#modal h3{font-size:1.5rem;margin-bottom:12px}
+#modal p,#modal li{color:var(--text-soft);font-size:.93rem;line-height:1.65}
+#modal ol{margin:0 0 16px 18px}
+#modal li{margin-bottom:8px}
+.upd{position:fixed;left:14px;right:14px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:700;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:none;align-items:center;gap:12px;box-shadow:var(--shadow)}
+.upd.on{display:flex}
+.upd p{flex:1;font-size:.86rem;color:var(--text-soft)}
+@media(min-width:960px){.upd{left:250px;right:auto;width:380px;bottom:20px}}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════ ACCESO (CÓDIGO) ══════════ -->
+<div id="gate">
+  <div class="halo"></div><div class="halo b"></div>
+  <div class="w-kicker">ACCESO PRIVADO</div>
+  <h1 class="w-title" style="font-size:clamp(2.6rem,11vw,4.2rem)">RESET<b>21</b></h1>
+  <p class="w-quote">Ingresá el código que recibiste para entrar a tu programa.</p>
+  <form id="gateForm" onsubmit="return validarCodigo(event)" style="position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:320px">
+    <input id="gateInput" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" placeholder="Tu código" style="width:100%;text-align:center;letter-spacing:.14em;font-size:1.05rem;padding:14px 16px;border-radius:50px;border:1px solid var(--line);background:var(--surface);color:var(--text)">
+    <button class="btn-start" id="gateBtn" type="submit" style="width:100%">Ingresar</button>
+    <p id="gateError" style="color:#e8869a;font-size:.82rem;min-height:1.2em;max-width:28ch"></p>
+  </form>
+</div>
+<script>
+(function(){
+  try{
+    var v=JSON.parse(localStorage.getItem('reset21_flyer_acceso')||'null');
+    if(v && v.ok){
+      var g=document.getElementById('gate');
+      if(g) g.style.display='none';
+    }
+  }catch(e){}
+})();
+</script>
+
+<!-- ══════════ BIENVENIDA ══════════ -->
+<div id="welcome">
+  <div class="halo"></div><div class="halo b"></div>
+  <div class="w-kicker">DESPEJAR · ORGANIZAR · TRANSFORMAR</div>
+  <h1 class="w-title">RESET<b>21</b></h1>
+  <p class="w-quote">No necesitás más horas. Necesitás menos cosas compitiendo por las mismas horas.</p>
+  <div class="w-sign">SILVI AURA</div>
+  <button class="btn-start" id="btnStart" onclick="entrar()">Empezar mis 21 días</button>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="app">
+
+<header class="top">
+  <div class="top-row">
+    <div class="logo">RESET <span>21</span></div>
+    <button class="install-b" id="btnInstall" onclick="instalar()">⬇ Instalar app</button>
+    <button class="icon-btn" id="btnTheme" onclick="toggleTheme()" aria-label="Cambiar tema">🌙</button>
+  </div>
+  <div class="pbar">
+    <div class="track"><div class="fill" id="topFill"></div></div>
+    <div class="num" id="topNum">0 / 21</div>
+  </div>
+</header>
+
+<main>
+  <!-- INICIO -->
+  <section class="view on" id="v-inicio">
+    <div class="hero">
+      <h2 id="heroHi">Hola de nuevo</h2>
+      <p id="heroLine">Tu programa está esperándote. Una consigna por día, chiquita, que se puede hacer hoy.</p>
+      <div class="ring">
+        <div class="circle" id="ring"><span id="ringNum">0%</span></div>
+        <div class="meta">
+          <b id="ringTitle">Día 1</b>
+          <small id="ringSub">Sacar todo de la cabeza</small>
+        </div>
+      </div>
+      <button class="btn" onclick="irAlDiaDeHoy()">Abrir el día de hoy</button>
+    </div>
+
+    <div class="stat-row" style="margin-bottom:16px">
+      <div class="stat"><b id="stDias">0</b><small>DÍAS</small></div>
+      <div class="stat"><b id="stRacha">0</b><small>RACHA</small></div>
+      <div class="stat"><b id="stMedallas">0</b><small>MEDALLAS</small></div>
+    </div>
+
+    <div class="card">
+      <div class="label">HOY, EN TRES MINUTOS</div>
+      <div id="homeHabits"></div>
+    </div>
+
+    <div class="quick">
+      <button onclick="go('agua')"><i>💧</i><span><b>Agua de hoy</b><small id="qAgua">0 de 8 vasos</small></span></button>
+      <button onclick="go('ruleta')"><i>🎡</i><span><b>Desafío sorpresa</b><small>Girá la ruleta de 15 minutos</small></span></button>
+      <button onclick="go('diario')"><i>📔</i><span><b>Escribir en el diario</b><small id="qDiario">0 entradas guardadas</small></span></button>
+      <button onclick="go('test')"><i>🎯</i><span><b>Test RESET</b><small id="qTest">Sin hacer todavía</small></span></button>
+      <button onclick="go('libro')"><i>📕</i><span><b>Leer el libro</b><small id="qLibro">Ebook completo + 7 bonos</small></span></button>
+      <button onclick="abrirSeccion('b7-veinte')"><i>🆘</i><span><b>Hoy es un día caótico</b><small>Los veinte minutos que ordenan el día</small></span></button>
+    </div>
+  </section>
+
+  <!-- DÍAS -->
+  <section class="view" id="v-dias">
+    <div class="eyebrow">PROGRAMA DE 21 DÍAS</div>
+    <h2 class="h-view">Tus 21 días</h2>
+    <p class="sub">Un día, una página. No leas tres días juntos ni te adelantes: varias consignas se apoyan en lo que hiciste el día anterior.</p>
+    <div class="stages" id="stageChips"></div>
+    <div class="days-grid" id="daysGrid"></div>
+    <div class="tip" style="margin-top:18px"><b>Si un día se cae, seguís.</b> No se recupera, no se compensa, no se arranca de cero. El día siguiente sigue igual.</div>
+  </section>
+
+  <!-- DETALLE DE DÍA -->
+  <section class="view" id="v-dia">
+    <button class="btn ghost sm" onclick="go('dias')" style="margin-bottom:16px">← Volver a los 21 días</button>
+    <div id="diaDetalle"></div>
+  </section>
+
+  <!-- HÁBITOS -->
+  <section class="view" id="v-habitos">
+    <div class="eyebrow">SOSTENER</div>
+    <h2 class="h-view">Hábitos del día</h2>
+    <p class="sub">Marcá el casillero recién cuando lo hiciste, no cuando lo leíste. Esa marca es tu única métrica.</p>
+    <div class="card">
+      <div class="label" id="habDate">HOY</div>
+      <div id="habList"></div>
+    </div>
+    <div class="card">
+      <div class="label">TUS ÚLTIMOS 21 DÍAS</div>
+      <div class="tracker" id="habTracker"></div>
+      <div class="tip" style="margin-top:14px"><b>Nunca dos días seguidos sin hacerlo.</b> Un día es una excepción; dos es el principio del abandono.</div>
+    </div>
+  </section>
+
+  <!-- AGUA -->
+  <section class="view" id="v-agua">
+    <div class="eyebrow">CUIDADO BÁSICO</div>
+    <h2 class="h-view">Agua de hoy</h2>
+    <p class="sub">Ocho vasos, uno por toque. Es el hábito más chico del programa y el que menos excusas admite.</p>
+    <div class="card">
+      <div class="glasses" id="glasses"></div>
+      <div class="row"><b id="aguaTxt" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600">0 de 8</b>
+      <button class="btn ghost sm" onclick="resetAgua()">Reiniciar el día</button></div>
+    </div>
+    <div class="card">
+      <div class="label">ÚLTIMOS 7 DÍAS</div>
+      <div class="week-bars" id="aguaWeek"></div>
+    </div>
+  </section>
+
+  <!-- COMIDAS / 15 MINUTOS -->
+  <section class="view" id="v-comidas">
+    <div class="eyebrow">QUINCE MINUTOS</div>
+    <h2 class="h-view">Comidas y ratos sueltos</h2>
+    <p class="sub">Los ratos de quince minutos son los que más se pierden. Acá no se decide: se abre, se elige la primera que puedas hacer y se cierra.</p>
+    <div class="card">
+      <div class="label">COMIDAS QUE SE RESUELVEN EN 15 MINUTOS</div>
+      <div id="comidasList"></div>
+    </div>
+    <div class="card">
+      <div class="label">COSAS QUE PODÉS HACER EN 15 MINUTOS</div>
+      <div id="quinceList"></div>
+      <div class="tip" style="margin-top:14px"><b>Poné el cronómetro de verdad.</b> La mitad de la fuerza de esto está en saber que se termina.</div>
+      <button class="btn sm ghost" style="margin-top:14px;width:100%" onclick="abrirSeccion('b6-lista-1')">Ver las 50 cosas del bono 6 →</button>
+    </div>
+  </section>
+
+  <!-- CONCEPTOS -->
+  <section class="view" id="v-conceptos">
+    <div class="eyebrow">EL MÉTODO</div>
+    <h2 class="h-view">Conceptos clave</h2>
+    <p class="sub">Las herramientas del programa, sueltas del calendario. Tocá cada tarjeta para abrirla.</p>
+    <div id="concepts"></div>
+  </section>
+
+  <!-- CARRUSEL DE FRASES -->
+  <section class="view" id="v-frases">
+    <div class="eyebrow">PARA VOLVER A LEER</div>
+    <h2 class="h-view">Frases del libro</h2>
+    <p class="sub">Deslizá para pasar de una a otra. Las diez que más se subrayan de RESET 21.</p>
+    <div class="carousel" id="frasesCar"></div>
+    <div class="card" style="margin-top:18px">
+      <div class="label">REFLEXIÓN LIBRE</div>
+      <p style="font-size:.93rem;color:var(--text-soft);margin-bottom:10px">¿Cuál de estas frases describe mejor tu semana?</p>
+      <textarea id="fraseRef" rows="4" placeholder="Escribí acá. Se guarda solo."></textarea>
+      <div class="row" style="margin-top:12px"><button class="btn sm" onclick="guardarFraseRef()">Guardar respuesta</button></div>
+    </div>
+  </section>
+
+  <!-- RULETA -->
+  <section class="view" id="v-ruleta">
+    <div class="eyebrow">DESAFÍO SORPRESA</div>
+    <h2 class="h-view">La ruleta de 15 minutos</h2>
+    <p class="sub">Cuando no sabés por dónde empezar, no decidas: girá y hacé lo que salga.</p>
+    <div class="wheel-wrap">
+      <div id="wheel"></div>
+      <div class="wheel-hub">RESET</div>
+    </div>
+    <div class="row" style="justify-content:center;margin-bottom:18px"><button class="btn" id="btnSpin" onclick="girar()">Girar la ruleta</button></div>
+    <div class="card" id="wheelResult"><h3>Tocá "Girar la ruleta"</h3><p>Te va a tocar un reto chico, de esos que entran en cualquier día.</p></div>
+  </section>
+
+  <!-- TEST -->
+  <section class="view" id="v-test">
+    <div class="eyebrow">PUNTO DE PARTIDA</div>
+    <h2 class="h-view">Test RESET</h2>
+    <p class="sub">Marcá del 1 al 5 cuánto se parece cada frase a tu vida de esta semana. 1 es "nunca me pasa" y 5 es "me pasa todos los días". Contestá rápido: acá no hay nadie mirando.</p>
+    <div class="row" style="margin-bottom:16px">
+      <button class="chip clickable on" id="tabIni" onclick="setTestModo('inicial')">Test inicial</button>
+      <button class="chip clickable" id="tabFin" onclick="setTestModo('final')">Test del día 21</button>
+    </div>
+    <div class="card" id="testCard"></div>
+    <div class="card" id="testResult" style="display:none"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="v-quiz">
+    <div class="eyebrow">CUÁNTO TE ACORDÁS</div>
+    <h2 class="h-view">Trivia RESET</h2>
+    <p class="sub">Nueve preguntas sobre el método. No es examen: es una forma de fijar lo que ya leíste.</p>
+    <div class="card" id="quizCard"></div>
+  </section>
+
+  <!-- DIARIO -->
+  <section class="view" id="v-diario">
+    <div class="eyebrow">TU CUADERNO</div>
+    <h2 class="h-view">Diario</h2>
+    <p class="sub">Qué cambió, qué te costó, qué no hiciste y por qué. Todo lo que escribas queda guardado en este teléfono.</p>
+    <div class="card">
+      <textarea id="diarioTxt" rows="5" placeholder="Hoy…"></textarea>
+      <div class="row" style="margin-top:12px"><button class="btn" onclick="guardarDiario()">Guardar entrada</button></div>
+    </div>
+    <div id="diarioList"></div>
+  </section>
+
+  <!-- LOGROS -->
+  <section class="view" id="v-logros">
+    <div class="eyebrow">LO QUE YA HICISTE</div>
+    <h2 class="h-view">Logros</h2>
+    <p class="sub">Sin medición el avance se vuelve invisible y el cerebro registra únicamente lo que falta.</p>
+    <div class="medals" id="medals"></div>
+  </section>
+
+  <!-- LIBRO -->
+  <section class="view" id="v-libro">
+    <div class="eyebrow">EL LIBRO COMPLETO</div>
+    <h2 class="h-view">Leer RESET 21</h2>
+    <p class="sub">El ebook entero y los siete bonos, adentro de la app. Se lee sin internet y se marca solo lo que vas leyendo.</p>
+    <div class="lib-bar"><i id="libFill"></i></div>
+    <div class="row" style="margin-bottom:16px"><small id="libPct" style="color:var(--text-dim);font-size:.78rem;letter-spacing:.08em"></small></div>
+    <button class="btn" id="btnSeguir" style="width:100%;margin-bottom:18px" onclick="seguirLeyendo()">Seguir leyendo</button>
+    <div class="lib-head">
+      <div class="search"><input id="libSearch" placeholder="Buscar en el libro…" oninput="pintarLibro()"></div>
+      <div class="fs-ctl">
+        <button onclick="cambiarFuente(-1)" aria-label="Letra más chica">A−</button>
+        <button onclick="cambiarFuente(1)" aria-label="Letra más grande">A+</button>
+      </div>
+    </div>
+    <div id="libIndex"></div>
+  </section>
+
+  <!-- LECTURA -->
+  <section class="view" id="v-lectura">
+    <button class="btn ghost sm" onclick="go('libro')" style="margin-bottom:16px">← Volver al índice</button>
+    <div id="lecturaBox" class="reader"></div>
+  </section>
+
+  <!-- AJUSTES -->
+  <section class="view" id="v-ajustes">
+    <div class="eyebrow">TU APP</div>
+    <h2 class="h-view">Ajustes y copia de seguridad</h2>
+    <p class="sub">Todo lo que escribís queda guardado en este teléfono y en ningún otro lado. Por eso conviene bajar una copia cada tanto.</p>
+
+    <div class="card">
+      <div class="label">INSTALAR EN EL TELÉFONO</div>
+      <p style="color:var(--text-soft);font-size:.93rem;margin-bottom:14px">Instalada, la app abre desde el ícono como cualquier otra, a pantalla completa y sin internet.</p>
+      <button class="btn" id="btnInstall2" style="width:100%" onclick="instalar()">⬇ Instalar RESET 21</button>
+      <div class="tip" style="margin-top:14px"><b>En iPhone</b> se instala desde Safari: tocá Compartir <b>⎙</b> y después <b>Agregar a inicio</b>.</div>
+    </div>
+
+    <div class="card">
+      <div class="label">COPIA DE SEGURIDAD</div>
+      <p style="color:var(--text-soft);font-size:.93rem;margin-bottom:14px">Bajá un archivo con todo: días marcados, respuestas, diario, hábitos, agua, tests y las hojas de los bonos. Si cambiás de teléfono, lo cargás y seguís donde estabas.</p>
+      <div class="row" style="gap:10px;flex-wrap:wrap">
+        <button class="btn sm" onclick="exportarDatos()">↓ Bajar mi copia</button>
+        <button class="btn sm ghost" onclick="document.getElementById('fileImp').click()">↑ Cargar una copia</button>
+      </div>
+      <input type="file" id="fileImp" accept="application/json,.json" style="display:none" onchange="importarDatos(this)">
+      <div id="backupInfo" class="tip" style="margin-top:14px"></div>
+    </div>
+
+    <div class="card">
+      <div class="label">APARIENCIA</div>
+      <div class="row" style="gap:10px;flex-wrap:wrap">
+        <button class="btn sm ghost" onclick="toggleTheme()">Cambiar entre claro y oscuro</button>
+        <button class="btn sm ghost" onclick="cambiarFuente(1)">Letra más grande</button>
+        <button class="btn sm ghost" onclick="cambiarFuente(-1)">Letra más chica</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">EMPEZAR DE NUEVO</div>
+      <p style="color:var(--text-soft);font-size:.93rem;margin-bottom:14px">Borra todo lo guardado en este teléfono: días, respuestas, diario y hojas. No se puede deshacer. Bajá la copia antes.</p>
+      <button class="btn sm ghost" onclick="borrarTodo()">Borrar todos mis datos</button>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <div class="label">RESET 21</div>
+      <p style="color:var(--text-dim);font-size:.85rem">Ebook completo + 7 bonos · © Silvi Aura<br>Uso personal e intransferible · Versión <span id="appVer"></span></p>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom" id="nav">
+  <div class="nav-brand">RESET <span>21</span></div>
+</nav>
+
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="modal" onclick="cerrarModal(event)"><div class="m-card" id="modalBox"></div></div>
+<div class="upd" id="updBar"><p>Hay una versión nueva del contenido.</p><button class="btn sm" onclick="location.reload()">Actualizar</button></div>
+<div id="celebrate" onclick="cerrarCelebracion(event)">
+  <div class="cel-card">
+    <span class="em" id="celEm">🏆</span>
+    <h3 id="celTitle">¡Lo lograste!</h3>
+    <p id="celText"></p>
+    <button class="btn" onclick="cerrarCelebracion(true)">Seguir</button>
+  </div>
+</div>
+
+<!-- ══════════ FIREBASE — VALIDACIÓN DE CÓDIGO ══════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+var firebaseConfig={
+  apiKey:"AIzaSyDRFDQu8cVJ6rozrJbVdEErdvdwNkXqgZ0",
+  authDomain:"reset21-612e9.firebaseapp.com",
+  projectId:"reset21-612e9",
+  storageBucket:"reset21-612e9.firebasestorage.app",
+  messagingSenderId:"107440225741",
+  appId:"1:107440225741:web:0c2069c98d9d5e8ce91884"
+};
+firebase.initializeApp(firebaseConfig);
+var dbFlyer=firebase.firestore();
+var GATE_KEY='reset21_flyer_acceso';
+
+function gateGuardar(codigo){
+  try{localStorage.setItem(GATE_KEY,JSON.stringify({ok:true,codigo:codigo,fecha:new Date().toISOString()}))}catch(e){}
+}
+function cerrarGate(){
+  var g=document.getElementById('gate');
+  if(g)g.style.display='none';
+}
+async function validarCodigo(ev){
+  ev.preventDefault();
+  var input=document.getElementById('gateInput');
+  var btn=document.getElementById('gateBtn');
+  var err=document.getElementById('gateError');
+  var codigo=(input.value||'').trim().toUpperCase();
+  err.textContent='';
+  if(!codigo){err.textContent='Escribí tu código.';return false}
+  btn.disabled=true;btn.textContent='Verificando…';
+  try{
+    var ref=dbFlyer.collection('codigos').doc(codigo);
+    var snap=await ref.get();
+    if(!snap.exists){
+      err.textContent='Código inválido. Revisá que esté bien escrito.';
+    }else if(snap.data().usado===true){
+      err.textContent='Este código ya fue usado. Si es tuyo, escribinos por WhatsApp.';
+    }else{
+      await ref.update({usado:true,fechaUso:firebase.firestore.FieldValue.serverTimestamp(),dispositivo:navigator.userAgent});
+      gateGuardar(codigo);
+      cerrarGate();
+    }
+  }catch(e){
+    err.textContent='No pudimos verificar el código. Revisá tu conexión e intentá de nuevo.';
+  }
+  btn.disabled=false;btn.textContent='Ingresar';
+  return false;
+}
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════
+   CONTENIDO — extraído del ebook RESET 21
+   Los días 10 a 14 y 18 a 21 están reconstruidos a
+   partir del índice y los bonos del libro: reemplazá
+   los textos de este array por los originales.
+═══════════════════════════════════════════════ */
+const DIAS=[{"n": 1, "etapa": 1, "t": "Sacar todo de la cabeza", "h": "Mapa de pendientes y descarga mental", "min": "20 minutos", "pasos": ["Agarrá hojas sueltas o un cuaderno y poné veinte minutos en el reloj. Escribí <b>todo</b> lo que tenés pendiente, sin ordenar y sin juzgar: llamar a la obra social, el cumpleaños de tu sobrina, el cajón de la cocina, hablar con tu jefa. Vale lo chico y lo enorme, lo de casa y lo del trabajo.", "Cuando sientas que ya no queda nada, seguí tres minutos más. Lo que aparece al final suele ser justo lo que más pesa.", "Releé la lista y ponéle una letra a cada renglón: <b>H</b> si se hace en menos de quince minutos, <b>P</b> si necesita día y hora, <b>D</b> si lo puede hacer otra persona, <b>E</b> si en realidad ya no importa.", "Contá cuántas <b>E</b> te quedaron y tachálas hoy mismo. Esa es tu primera descarga real.", "De las <b>H</b>, hacé una sola. Una. Elegí la más rápida y cerrala antes de dormir."], "why": "Tu cabeza no está hecha para almacenar pendientes, está hecha para resolverlos. Mientras sigan adentro, van a seguir apareciendo a las tres de la mañana.", "tip": "Si mientras escribís se te ocurre un pendiente nuevo, anotalo también. La descarga no se corta por nada.", "ref": "¿Cuántas E te quedaron y cuál fue la H que cerraste hoy?"}, {"n": 2, "etapa": 1, "t": "Eliminar el ruido", "h": "Checklist de descarte", "min": "15 minutos", "pasos": ["Buscá una bolsa grande o una caja de cartón y escribile <b>SALE</b> con marcador. Que se vea.", "Recorré tu casa y meté adentro diez cosas. Solo diez: rotas, repetidas, que no usás hace más de un año o que ya no te representan.", "Para decidir rápido usá una sola pregunta: <b>¿lo volvería a comprar hoy?</b> Si dudás más de tres segundos, va a la caja.", "Empezá por lo fácil: el cajón de los cubiertos, el botiquín, la mesita de luz, el placard de los abrigos. Lo sentimental lo dejamos para más adelante.", "Antes de que termine el día, sacá la caja de tu casa. A la basura, al reciclado, a la vecina, a la parroquia. Si queda en el pasillo, no cuenta."], "why": "Cada objeto que no usás te ocupa lugar dos veces: en la casa y en la cabeza. Sacar diez cosas es la manera más barata de sentir aire.", "tip": "Diez cosas por día son doscientas diez en veintiún días. Nadie extraña ninguna.", "ref": "¿Qué cosa te costó más meter en la caja y por qué?"}, {"n": 3, "etapa": 1, "t": "Ordenar el espacio que más pesa", "h": "Rutina de organización de 20 minutos", "min": "20 minutos", "pasos": ["Elegí <b>un</b> espacio chico y bien delimitado: un cajón, una repisa, la mesita de luz, el estante de arriba del placard. No la cocina. No el living. Un espacio.", "<b>Sacar:</b> vaciálo por completo sobre la cama o la mesa. Que quede vacío de verdad, aunque impresione.", "<b>Clasificar:</b> armá tres pilas — se queda, se va, va en otro lado. Sin pila de no sé.", "<b>Limpiar:</b> pasale un trapo. Son treinta segundos y cambia la sensación completa del espacio.", "<b>Organizar:</b> guardá solo la pila se queda, con lo que más usás adelante y a la altura de la mano. Lo de la pila se va entra en la caja de ayer."], "why": "Intentar ordenar toda la casa de una vez es la forma más rápida de abandonar. Un espacio terminado, en cambio, te deja una prueba concreta de que sí podés.", "tip": "Sacale una foto al antes y al después. La vas a necesitar el día 7.", "ref": "¿Qué espacio elegiste y cómo quedó?"}, {"n": 4, "etapa": 1, "t": "Descubrir dónde se va el tiempo", "h": "Auditoría personal del tiempo", "min": "Todo el día · 5 minutos de cierre", "pasos": ["Hoy no cambies nada. Hoy solamente se registra. Si intentás corregirte mientras medís, el dato no sirve.", "Anotá en el celular o en un papel qué hiciste cada vez que cambiás de actividad, con la hora: 7:10 desayuno · 7:40 llevo a los chicos · 8:20 mails · 8:35 Instagram.", "A la noche sumá los minutos y agrupálos en ocho categorías: trabajo, tareas de casa, teléfono, redes, familia, descanso, traslados y tiempo que no sabés en qué se fue.", "Escribí el total de cada categoría en una hoja, ordenadas de mayor a menor. Sin redondear para abajo.", "Marcá con un círculo la que más te sorprendió. Esa es la que vamos a trabajar el resto del programa."], "why": "No se puede recuperar un tiempo que no sabés dónde se está yendo. Casi nunca el problema es la falta de horas: es dónde se filtran.", "tip": "Casi todas subestimamos el uso del teléfono a la mitad. Mirá el dato real en Ajustes, en Tiempo en pantalla.", "ref": "¿Cuál fue la categoría que más te sorprendió y cuántos minutos se llevó?"}, {"n": 5, "etapa": 1, "t": "Reducir la lista interminable", "h": "Método de las tres prioridades", "min": "10 minutos", "pasos": ["Tomá la lista del día 1 y elegí tres cosas para mañana. Tres. Ni cuatro porque son cortitas.", "Ordenálas: la <b>1</b> es la que más te libera si la hacés, la <b>2</b> la que tiene fecha, la <b>3</b> la que venís pateando hace más tiempo.", "Escribílas en un papel chico y dejálo donde lo veas sí o sí: la heladera, el espejo del baño, atrás del celular.", "Todo lo demás pasa a una lista aparte que se llama <b>después</b>. No se borra: se corre.", "Hoy hacé la número 1 y nada más. Si te sobra tiempo, es ganancia; si no, ya cumpliste."], "why": "Una lista de veinte tareas no es una lista, es una acusación. Tres se pueden mirar sin que te suba la presión.", "tip": "Si una tarea no entra en el día tres veces seguidas, no es prioridad: es un después disfrazado.", "ref": "Escribí acá tus tres prioridades de mañana."}, {"n": 6, "etapa": 1, "t": "Aprender a decir que no", "h": "Filtro de decisiones y límites personales", "min": "15 minutos", "pasos": ["Anotá tres compromisos que asumiste este mes y que, si pudieras volver atrás, no volverías a asumir.", "Pasá cada uno por cuatro preguntas: <b>¿lo tengo que hacer yo? ¿tiene que ser ahora? ¿qué pasa concretamente si no lo hago? ¿lo hago por ganas o por culpa?</b>", "Elegí uno solo y resolvélo hoy: delegálo, corrélo de fecha o cancelálo.", "Practicá la frase antes de decirla. Tres que funcionan: Esta semana no puedo, te aviso cuando me libere. No voy a poder, pero te paso el contacto de alguien que sí. Prefiero no comprometerme a algo que después no voy a cumplir.", "No expliques de más. Una razón alcanza. Dos ya suena a permiso pedido."], "why": "Cada sí automático es un no silencioso a algo tuyo. Decir que no no te vuelve egoísta: te vuelve confiable.", "tip": "Cuando te pidan algo, respondé dejame ver y te confirmo. Ganás tiempo y evitás el sí reflejo.", "ref": "¿Qué compromiso resolviste hoy y cómo te sentiste después?"}, {"n": 7, "etapa": 1, "t": "Primer RESET", "h": "Evaluación de progreso RESET", "min": "15 minutos", "pasos": ["Buscá la foto del día 3 y compará con cómo está ese espacio hoy. Mirala de verdad, no de memoria.", "Puntuá del 1 al 10, rápido y sin pensarlo mucho: saturación mental, orden de la casa, control del tiempo, energía al final del día.", "Escribí tres frases: <b>qué cambió</b>, <b>qué me costó</b>, <b>qué no hice y por qué</b>.", "Elegí el día de esta semana que mejor te salió y anotá qué tenía de distinto. Ahí está tu pista para la semana que viene.", "No te propongas nada nuevo. Hoy solo se mira. Mañana empezamos a construir."], "why": "Sin medición el avance se vuelve invisible y el cerebro registra únicamente lo que falta. Los números te devuelven lo que sí hiciste.", "tip": "Si algún día de la semana no lo hiciste, no lo recuperes. La etapa 2 arranca igual, con vos donde estés.", "ref": "Qué cambió · qué me costó · qué no hice y por qué."}, {"n": 8, "etapa": 2, "t": "Crear un día ideal realista", "h": "Plantilla Mi día ideal", "min": "20 minutos", "pasos": ["Dibujá una columna con los tramos reales de tu día: mañana temprano, media mañana, mediodía, tarde, tardecita, noche.", "Anotá primero lo que <b>no</b> se mueve: horarios de trabajo, escuela, comidas, traslados. Eso es tu piso.", "En los huecos que quedan ubicá tres cosas y no más: un bloque de tareas concentradas, un bloque de casa y quince minutos tuyos.", "Dejá al menos un hueco vacío a propósito. Ese hueco es el que va a absorber lo imprevisto sin que se caiga todo lo demás.", "Probálo mañana tal cual está y anotá al costado qué se cayó. Eso se ajusta, no se abandona."], "why": "Una rutina que no contempla imprevistos se rompe el primer martes. Una que deja aire aguanta un mes malo completo.", "tip": "Si tu día ideal necesita que te levantes a las cinco, no es tu día ideal: es el de otra persona.", "ref": "¿Dónde pusiste el hueco vacío de tu día?"}, {"n": 9, "etapa": 2, "t": "Organizar el tiempo por bloques", "h": "Planificador de bloques de tiempo", "min": "20 minutos", "pasos": ["Agrupá tus tareas por <b>tipo</b>, no por urgencia: llamadas y mensajes / trámites y pagos / casa / trabajo concentrado / compras.", "Asigná a cada grupo un momento fijo. Por ejemplo: llamadas y mensajes de 11 a 11:30; trámites, los martes a la mañana; compras, el jueves.", "Escribí los bloques en la agenda como si fueran turnos médicos. Un turno no se mueve porque alguien te escribió.", "Dentro del bloque silenciá el teléfono y no salgas a hacer otra cosa. Si aparece algo, anotalo y seguí.", "Dejá un bloque corto al final del día para lo que se desbordó. Que exista ese lugar es lo que evita que se desborde todo."], "why": "Saltar entre tareas distintas cuesta más energía que hacerlas. Agrupadas por tipo, la cabeza entra una sola vez en cada modo.", "tip": "Un bloque de treinta minutos bien cerrado rinde más que dos horas interrumpidas.", "ref": "¿Qué bloques armaste y a qué hora los pusiste?"}, {"n": 10, "etapa": 2, "t": "Mantener la casa sin vivir ordenando", "h": "RUTINA DE MANTENIMIENTO DE 15 MINUTOS", "min": "15 MINUTOS", "pasos": ["Dividí tu casa en zonas: cocina, baño, living, dormitorios, entrada.", "Asigná una zona a cada día de lunes a viernes. Sábado y domingo quedan libres, y eso es parte del sistema.", "Definí para cada zona tres acciones que entren en quince minutos. Cocina, por ejemplo: mesada libre, pileta vacía, un cajón repasado.", "Sumá el reseteo de la noche: diez minutos antes de acostarte, todo lo que está fuera de lugar vuelve a su lugar. Nada más que eso.", "Hoy hacé la zona que le toca al día. Poné música y timer, y parás cuando suena."], "why": "El desorden no vuelve porque seas desordenada: vuelve porque el mantenimiento no está agendado en ningún lado.", "tip": "Cada cosa que entra a tu casa necesita un lugar fijo. Si no lo tiene, ya es desorden futuro.", "ref": "¿Qué zona te tocaba hoy y cuáles son las tres acciones que definiste para ella?"}, {"n": 11, "etapa": 2, "t": "El método de los 15 minutos", "h": "LISTA DE TAREAS DE 15 MINUTOS", "min": "15 MINUTOS POR TAREA", "pasos": ["Hacé una lista de todo lo que venís posponiendo y que en realidad se resuelve en quince minutos o menos: pegar el botón, contestar ese mail, sacar el turno, ordenar el cajón de los cables, dar de baja la suscripción que no usás.", "Anotá al lado de cada una cuánto hace que la venís pateando. Ese número incomoda, y por eso funciona.", "Elegí tres y hacélas hoy, una atrás de la otra, con el reloj a la vista.", "Cuando suenan los quince minutos, parás igual. La regla no es terminar: es empezar.", "Dejá la lista a mano. Es tu reserva para los huecos muertos del día: la sala de espera, los diez minutos antes de salir."], "why": "No postergamos por falta de tiempo, postergamos porque la tarea se ve más grande de lo que es. Quince minutos la devuelven a su tamaño real.", "tip": "Las tareas de menos de dos minutos no van a ninguna lista. Se hacen en el momento y se olvidan.", "ref": "¿Qué tarea grande desarmaste y en cuántos tramos de quince minutos te quedó?"}, {"n": 12, "etapa": 2, "t": "Recuperar el control del teléfono", "h": "CHECKLIST DE RESET DIGITAL", "min": "25 MINUTOS", "pasos": ["Abrí las notificaciones y apagá todas menos tres: llamadas, mensajes de personas reales y una app que de verdad necesites por trabajo.", "Borrá cinco aplicaciones que no abriste en el último mes. Si las extrañás, se vuelven a bajar en veinte segundos.", "Sacá las redes de la pantalla de inicio y metélas en una carpeta. Que haya que buscarlas.", "Definí dos momentos sin teléfono: la primera media hora del día y la última media hora antes de dormir. Dejálo cargando en otra habitación.", "Anotá en qué momentos estirás la mano al celular sin darte cuenta. Ese gesto automático es lo que estamos desarmando."], "why": "El tiempo no se pierde en una sesión larga: se pierde en cincuenta interrupciones cortas que dejan el día hecho pedazos.", "tip": "Poner la pantalla en escala de grises baja muchísimo el impulso de abrirlo. Está en Accesibilidad.", "ref": "¿Cuánto te daba el teléfono por día y qué ajuste hiciste hoy?"}, {"n": 13, "etapa": 2, "t": "Crear un sistema para los pendientes", "h": "SISTEMA DE GESTIÓN DE PENDIENTES RESET", "min": "30 MINUTOS", "pasos": ["Elegí un solo lugar de captura: un cuaderno o una aplicación. Uno. No dos “por las dudas”.", "Juntá todo lo que hoy está disperso: papelitos, notas del celular, mensajes que te mandaste a vos misma, mails marcados, capturas de pantalla.", "Volcálo todo en ese único lugar, aunque quede feo y desordenado. Después se ordena.", "Clasificá con las cuatro categorías del día 1: Hacer · Programar · Delegar · Eliminar.", "Definí un momento fijo de revisión: cinco minutos cada noche y veinte minutos los domingos. Sin revisión, el sistema se llena y se abandona."], "why": "El problema casi nunca es la memoria: es tener seis lugares distintos donde anotar. Un solo lugar deja de exigirte que recuerdes dónde guardaste qué.", "tip": "Si aparece algo mientras estás en otra cosa, no lo resuelvas: capturálo y seguí con lo que estabas haciendo.", "ref": "¿Dónde va a parar de ahora en más todo lo pendiente?"}, {"n": 14, "etapa": 2, "t": "Segundo RESET", "h": "EVALUACIÓN RESET DEL DÍA 14", "min": "15 MINUTOS", "pasos": ["Volvé a puntuar del 1 al 10 los cuatro indicadores del día 7: saturación mental, orden, control del tiempo y energía.", "Compará con los números de hace una semana y anotá la diferencia de cada uno, con el signo adelante.", "De las herramientas de esta etapa, marcá cuáles usaste de verdad y cuáles quedaron solo leídas.", "Elegí una que no funcionó y ajustála en lugar de descartarla: ¿el bloque era muy largo? ¿la zona muy grande? ¿el horario irreal?", "Escribí en una línea qué querés que sea distinto en la última semana."], "why": "Los sistemas no fallan por malos, fallan por estar mal medidos. Ajustar es parte del método, no una señal de fracaso.", "tip": "Si algún indicador bajó, no es retroceso. A veces recién en la segunda semana se ve el tamaño real del problema.", "ref": "¿Qué indicador se movió más desde el día 7 y qué querés que sea distinto en la última semana?"}, {"n": 15, "etapa": 3, "t": "Elegir un solo hábito", "h": "Selección de hábito clave", "min": "15 minutos", "pasos": ["Escribí cinco hábitos que te gustaría tener. Salen rápido, no lo pienses de más.", "Elegí uno solo: el que, sostenido tres meses, más te cambiaría los días.", "Achicálo hasta que sea casi ridículo. No hacer ejercicio, sino diez minutos de caminata. No leer, sino dos páginas.", "Definí cuándo y dónde, con precisión de reloj: después de dejar a los chicos, en la vuelta a casa.", "Marcá el día de hoy en un calendario que veas todos los días. Ese es tu día uno."], "why": "Nadie abandona los hábitos por falta de voluntad. Los abandona por arrancar cinco al mismo tiempo.", "tip": "Un hábito chico sostenido le gana siempre a uno grande abandonado en la segunda semana.", "ref": "¿Cuál es tu hábito, en su versión más chica, y a qué hora lo hacés?"}, {"n": 16, "etapa": 3, "t": "Dejar de depender de la motivación", "h": "Diseñador de hábitos RESET", "min": "20 minutos", "pasos": ["<b>Señal:</b> enganchá tu hábito a algo que ya hacés todos los días. Después de poner la pava funciona mejor que a las ocho.", "<b>Acción:</b> definíla tan chica que puedas hacerla en un día malo. La versión mínima es la que sostiene la cadena.", "<b>Recompensa:</b> agregále algo agradable e inmediato — una taza de algo rico, tachar la casilla, dos canciones que te gusten.", "<b>Entorno:</b> dejá todo preparado la noche anterior. Las zapatillas a la vista, el libro sobre la almohada, la botella llena.", "Escribí tu plan B en una línea: si hoy no puedo hacer los diez minutos, hago dos. Y cumplilo."], "why": "La motivación sube y baja sola, no la controlás. El entorno sí se diseña, y no cambia de humor los días difíciles.", "tip": "Nunca dos días seguidos sin hacerlo. Un día es una excepción; dos es el principio del abandono.", "ref": "Escribí tu señal, tu acción mínima y tu plan B."}, {"n": 17, "etapa": 3, "t": "Crear una rutina de mañana", "h": "RUTINA RESET DE MAÑANA", "min": "15 MINUTOS", "pasos": ["Elegí tres acciones y no más. Por ejemplo: tomar un vaso de agua, tender la cama, mirar las tres prioridades del día.", "Que entren en quince minutos contados con reloj. Si no entran, achicá las acciones, no estires la rutina.", "La regla de oro: nada de pantallas hasta terminar las tres. Ni el clima, ni un mensaje “rápido”.", "Dejá preparado desde la noche lo que la rutina necesite: la ropa, el desayuno, la mochila, la lista.", "Probála mañana y anotá qué acción se cayó primero. Esa es la que hay que achicar o cambiar de lugar."], "why": "Cuando el día arranca respondiendo a lo que otros necesitan, ya no se recupera. Los primeros quince minutos son los únicos que dependen enteramente de vos.", "tip": "Si tenés chicos, empezá veinte minutos antes de que se despierten. No hace falta madrugar tres horas.", "ref": "¿Cómo te quedó armada la mañana y a qué hora arranca?"}, {"n": 18, "etapa": 3, "t": "Crear una rutina de noche", "h": "RESET NOCTURNO", "min": "10 MINUTOS", "pasos": ["Definí una hora de cierre. A partir de ahí no se empiezan tareas nuevas, aunque “sea cortita”.", "Diez minutos, cinco pasos: revisar los pendientes del día, dejar escritas las tres prioridades de mañana, ordenar lo esencial (mesada, mesa, mochilas), dejar listo lo de la mañana y apagar el teléfono lejos de la cama.", "Hacélo siempre en el mismo orden. La secuencia es lo que lo convierte en rutina y no en un esfuerzo.", "Cerrá con algo que te guste: un té, tres páginas, música baja. El cierre tiene que dar ganas.", "Anotá a qué hora te acostaste. Vas a querer ese dato el día 21."], "why": "El día siguiente no empieza a la mañana: empieza la noche anterior. Diez minutos de cierre te ahorran la primera hora de caos.", "tip": "Dejar la mesada vacía antes de dormir cambia por completo cómo se siente el desayuno.", "ref": "¿Cuál es tu hora de cierre y qué cinco pasos te quedaron en la rutina de noche?"}, {"n": 19, "etapa": 3, "t": "Incorporar autocuidado sin culpa", "h": "PLANIFICADOR DE MICROAUTOCUIDADO", "min": "15 MINUTOS", "pasos": ["Escribí diez cosas que te hacen bien y duran menos de quince minutos: bañarte sin apuro, caminar tres cuadras, llamar a una amiga, tomar el café sentada, ponerte crema, salir al patio.", "Elegí tres y ubicálas en la semana con día y horario, igual que un turno. Sin horario no existe.", "Hacé una hoy. Hoy, no el sábado, no “cuando termine todo”.", "Cuando aparezca la culpa, contestále con datos: no le estás sacando tiempo a nadie, estás evitando llegar al viernes sin nada para dar.", "Anotá cómo te sentiste después. Ese registro es el que te va a convencer cuando la culpa vuelva."], "why": "El autocuidado no es un premio por haber terminado todo, porque terminar todo no pasa nunca. Es el combustible, no el postre.", "tip": "Quince minutos por día son casi dos horas por semana. Nadie tiene dos horas libres; todo el mundo tiene quince minutos.", "ref": "¿Qué quince minutos elegiste para vos y en qué momento del día entran?"}, {"n": 20, "etapa": 3, "t": "Diseñar tu sistema personal RESET", "h": "MI SISTEMA PERSONAL RESET", "min": "30 MINUTOS", "pasos": ["Tomá una hoja y hacé ocho renglones: planificación semanal, pendientes, prioridades, mantenimiento de la casa, hábito, autocuidado, orden digital y rutinas de mañana y noche.", "Al lado de cada uno escribí qué vas a usar y cuándo, con precisión: “Pendientes: cuaderno único, reviso 21:30”. “Semanal: domingo 19 h, veinte minutos”.", "Sacá todo lo que no usaste ni una vez en estos veinte días. Si no lo usaste con el programa fresco, no lo vas a usar en marzo.", "Definí tu mínimo irreducible: las tres cosas que vas a sostener incluso en la peor semana del año.", "Pegá la hoja donde la veas todos los días. Un sistema guardado en un cajón no es un sistema."], "why": "Un sistema que no está escrito es apenas una intención. Y las intenciones no sobreviven a una semana difícil.", "tip": "Cuanto más corto el sistema, más chances tiene de sobrevivir. Si no entra en una hoja, es demasiado.", "ref": "Escribí acá tu sistema personal RESET, tal como te quedó en una sola hoja."}, {"n": 21, "etapa": 3, "t": "El gran RESET", "h": "EVALUACIÓN FINAL + PLAN DE CONTINUIDAD", "min": "30 MINUTOS", "pasos": ["Rehacé el test inicial de la página 5 sin mirar las respuestas viejas. Después sí, comparálas.", "Anotá la diferencia en cada área, con el número exacto. Lo que subió y lo que no.", "Escribí cinco respuestas: qué cambió, qué hábito incorporé, qué problemas bajaron, qué me sigue costando y qué sistema quiero mantener.", "Escribí tu compromiso en una sola frase, en presente y en primera persona: “Reviso mis tres prioridades cada noche”.", "Firmálo y ponéle la fecha. Después agendá tu próximo RESET dentro de noventa días."], "why": "Lo que no se cierra formalmente se diluye. Poner tu nombre debajo de una frase la convierte en un acuerdo con vos misma.", "tip": "Sacale una foto a esta página y ponéla de fondo de pantalla la primera semana. Después ya no vas a necesitarla.", "ref": "¿Qué cambió en estos veintiún días y cuál es tu compromiso, en una sola frase?"}];
+
+const LIBRO=[{"id": "bienvenida", "g": "libro", "k": "ANTES DE EMPEZAR", "t": "Bienvenida", "m": "CARTA DE LA AUTORA", "tipo": "texto", "b": [{"t": "p", "x": "Si estás leyendo esto, hay algo que ya sabemos las dos: no es que seas desorganizada. Es que estás sosteniendo más cosas de las que entran en un día, y hace bastante que nadie te pregunta cómo hacés."}, {"t": "p", "x": "Escribí este programa después de escuchar la misma frase cientos de veces: “empiezo a organizarme y a la semana lo dejo”. Y no lo dejás por falta de voluntad. Lo dejás porque casi todos los métodos que circulan están pensados para alguien con la agenda vacía, sin chicos, sin trabajo, sin casa y sin cansancio acumulado. Esos métodos no fallan por difíciles: fallan por irreales."}, {"t": "p", "x": "RESET 21 está armado al revés. Cada día tiene una sola consigna, chiquita, que se puede hacer hoy, en el medio de tu vida tal cual es. Los primeros días son fáciles a propósito. No porque no te crea capaz de más, sino porque lo que hace que un método funcione no es la intensidad: es no abandonarlo en el día cuatro."}, {"t": "p", "x": "En tres semanas vas a pasar de “tengo mil cosas y no sé por dónde empezar” a “sé cuáles son mis tres prioridades y tengo un sistema que puedo sostener”. No te prometo una vida perfecta ni una casa de revista. Te prometo algo bastante mejor: claridad, y la sensación concreta de estar manejando tus días en vez de correrlos de atrás."}, {"t": "p", "x": "Una última cosa antes de empezar. Si un día no podés, no pasa nada. No lo recuperes, no lo compenses, no arranques de cero. Seguís al día siguiente donde estabas. El programa está hecho para semanas reales, y las semanas reales tienen días que se caen."}, {"t": "p", "x": "Nos vemos en el día 1."}, {"t": "q", "x": "Silvi Aura"}]}, {"id": "como-usar", "g": "libro", "k": "INSTRUCCIONES", "t": "Cómo usar RESET 21", "m": "SEIS REGLAS DEL PROGRAMA", "tipo": "texto", "b": [{"t": "ol", "x": ["<b>Un día, una página.</b> No leas tres días juntos ni te adelantes. Cada consigna está pensada para hacerse el mismo día que la leés, y varias se apoyan en lo que hiciste el día anterior.", "<b>Elegí un horario fijo para leer.</b> Diez minutos a la mañana con el café, o a la noche antes de dormir. El horario importa más que la hora: lo que se agenda, se hace.", "<b>Marcá el casillero.</b> Al final de cada día hay un cuadrado vacío. Marcálo recién cuando hiciste la consigna, no cuando la leíste. Esa marca es tu única métrica.", "<b>Tené a mano lo básico:</b> un cuaderno o un anotador, una lapicera, una caja de cartón y el reloj del celular. Nada más. Si el método necesitara comprar algo, no serviría.", "<b>Si un día se cae, seguís.</b> No se recupera, no se compensa, no se arranca de cero. El día siguiente sigue igual.", "<b>Guardá lo que escribís.</b> Las listas del día 1, la foto del día 3 y los números del día 7 los vas a volver a usar. Poné todo en la misma carpeta o el mismo cuaderno."]}, {"t": "h", "x": "Cuánto tiempo te va a llevar"}, {"t": "p", "x": "Entre diez y treinta minutos por día, según la consigna. Los días 4, 13, 20 y 21 son los más largos. Los días 1, 5, 7, 11 y 15 se resuelven en quince minutos o menos. Si tenés una semana especialmente complicada, empezá el programa un domingo: los primeros tres días son los más livianos."}, {"t": "h", "x": "Un consejo sobre el día 4"}, {"t": "p", "x": "Es el único día que no te pide cambiar nada, solamente medir. Es también el que más suele sorprender. No lo saltees ni lo hagas de memoria: el resto del programa se apoya en ese dato."}, {"t": "tip", "x": "En esta app el casillero de cada día ya está: se marca solo con tocarlo y te va guardando la racha, las medallas y todo lo que escribas."}]}, {"id": "test-inicial", "g": "libro", "k": "PUNTO DE PARTIDA", "t": "Test inicial RESET", "m": "DIEZ FRASES · DEL 1 AL 5", "tipo": "texto", "b": [{"t": "p", "x": "Marcá del 1 al 5 cuánto se parece cada frase a tu vida de esta semana. 1 es “nunca me pasa” y 5 es “me pasa todos los días”. Contestá rápido, sin pensar la respuesta correcta: acá no hay nadie mirando. El día 21 vas a volver a esta página y vas a comparar."}, {"t": "goto", "x": "Hacer el test ahora", "v": "test"}, {"t": "h", "x": "Cómo se lee el puntaje"}, {"t": "ul", "x": ["<b>De 10 a 20:</b> tenés una base ordenada y este programa te va a servir para afinarla.", "<b>De 21 a 35:</b> hay sobrecarga en varias áreas al mismo tiempo, que es exactamente para lo que está hecho RESET 21.", "<b>De 36 a 50:</b> estás sosteniendo demasiado sola; empezá por el día 1 sin saltear nada y no te exijas ir más rápido."]}]}, {"id": "etapa-1", "g": "libro", "k": "ETAPA 1 · DÍAS 1 AL 7", "t": "Despejar", "m": "PRIMERA SEMANA", "tipo": "etapa", "b": [{"t": "p", "x": "Antes de construir cualquier sistema hay que bajar el ruido. Esta primera semana no organiza: descarga, saca y mide. Es la etapa que te devuelve el aire para poder pensar."}, {"t": "h", "x": "En esta semana vas a"}, {"t": "ul", "x": ["Vaciar la cabeza y ver el tamaño real de lo pendiente", "Sacar de casa lo que sobra y ocupa lugar", "Terminar un espacio, uno solo, de punta a punta", "Medir dónde se está yendo el tiempo de verdad", "Reducir la lista a tres prioridades por día", "Aprender a decir que no sin dar explicaciones de más"]}]}, {"id": "pausa-7", "g": "libro", "k": "DESPUÉS DEL DÍA 7", "t": "No necesitás más horas", "m": "PÁGINA DE PAUSA", "tipo": "pausa", "b": [{"t": "q", "x": "No necesitás más horas. Necesitás menos cosas compitiendo por las mismas horas."}, {"t": "p", "x": "SILVI AURA"}]}, {"id": "etapa-2", "g": "libro", "k": "ETAPA 2 · DÍAS 8 AL 14", "t": "Organizar", "m": "SEGUNDA SEMANA", "tipo": "etapa", "b": [{"t": "p", "x": "Con la cabeza más despejada, ahora sí se construye. Esta semana arma la estructura: un día realista, bloques de tiempo, un mantenimiento de casa que no te coma la vida y un único lugar para los pendientes."}, {"t": "h", "x": "En esta semana vas a"}, {"t": "ul", "x": ["Diseñar un día que se pueda sostener un martes cualquiera", "Agrupar tareas en bloques en vez de saltar entre ellas", "Mantener la casa con quince minutos por zona", "Desarmar las tareas gigantes en tramos de quince minutos", "Recuperar el teléfono en lugar de que te maneje", "Tener un solo lugar donde va a parar todo lo pendiente"]}]}, {"id": "pausa-14", "g": "libro", "k": "DESPUÉS DEL DÍA 14", "t": "El orden no es un estado", "m": "PÁGINA DE PAUSA", "tipo": "pausa", "b": [{"t": "q", "x": "El orden no es un estado al que se llega. Es un sistema que se sostiene, y los sistemas se pueden aprender."}, {"t": "p", "x": "SILVI AURA"}]}, {"id": "etapa-3", "g": "libro", "k": "ETAPA 3 · DÍAS 15 AL 21", "t": "Transformar", "m": "TERCERA SEMANA", "tipo": "etapa", "b": [{"t": "p", "x": "La última semana convierte lo que funcionó en algo que se mantiene solo. Un hábito, dos rutinas, autocuidado real y un sistema escrito con tu nombre que siga funcionando el día 60 y el día 200."}, {"t": "h", "x": "En esta semana vas a"}, {"t": "ul", "x": ["Elegir un solo hábito y hacerlo lo bastante chico", "Diseñar el entorno para no depender de las ganas", "Armar una mañana y una noche que sostengan el día", "Incorporar autocuidado en dosis de quince minutos", "Escribir tu sistema personal en una sola hoja", "Cerrar el proceso, medirlo y firmar tu continuidad"]}]}, {"id": "pausa-21", "g": "libro", "k": "DESPUÉS DEL DÍA 21", "t": "No estás atrasada", "m": "PÁGINA DE PAUSA", "tipo": "pausa", "b": [{"t": "q", "x": "No estás atrasada. Estás empezando con información que antes no tenías."}, {"t": "p", "x": "SILVI AURA"}]}, {"id": "cierre", "g": "libro", "k": "DÍA 21 CUMPLIDO", "t": "Terminaste RESET 21", "m": "CIERRE DEL PROGRAMA", "tipo": "texto", "b": [{"t": "p", "x": "Veintiún días atrás tenías una lista sin fondo y la sensación de estar corriendo siempre atrás de algo. Hoy tenés un sistema escrito, tres prioridades por día, un hábito en marcha y dos rutinas que sostienen la mañana y la noche. Eso no se consiguió con motivación: se consiguió apareciendo veintiún veces."}, {"t": "p", "x": "Ahora viene la parte que casi nadie cuenta. Un método funciona mientras se usa, y lo que más lo hace caer no es la falta de ganas: es no tener dónde registrarlo cuando el cuaderno queda en un cajón."}, {"t": "h", "x": "Por eso existe esta app"}, {"t": "ul", "x": ["Tus tres prioridades del día, siempre a mano", "Seguimiento del hábito que elegiste el día 15", "Las rutinas de mañana y de noche a la vista", "Tu sistema personal RESET guardado y editable", "Un nuevo RESET cada noventa días, con tus datos anteriores"]}, {"t": "p", "x": "Gracias por estos veintiún días. Nos vemos en el próximo RESET."}, {"t": "q", "x": "Silvi Aura"}]}, {"id": "legal", "g": "libro", "k": "AVISO LEGAL", "t": "Derechos reservados", "m": "USO PERSONAL E INTRANSFERIBLE", "tipo": "texto", "b": [{"t": "p", "x": "© Silvi Aura. Todos los derechos reservados."}, {"t": "p", "x": "RESET 21 — Un método de 21 días para ordenar tu vida cuando sentís que no te alcanza el día."}, {"t": "p", "x": "Este material es de uso personal e intransferible. Queda prohibida su reproducción total o parcial, su copia, su distribución, su publicación en cualquier medio digital o impreso, su reventa y su cesión a terceros, sin autorización previa y por escrito de la autora."}, {"t": "p", "x": "El contenido de esta guía tiene fines informativos y de organización personal. No sustituye el consejo, el diagnóstico ni el tratamiento de un profesional de la salud física o mental. Si estás atravesando un momento difícil, buscá acompañamiento profesional."}, {"t": "p", "x": "Las fotografías incluidas provienen de bancos de imágenes de uso libre y comercial."}]}, {"id": "b1-como", "g": "b1", "k": "BONO 1 · PLANNER SEMANAL", "t": "Cómo usar este planner", "m": "UNA HOJA POR SEMANA · 10 MINUTOS DE ARMADO", "tipo": "texto", "b": [{"t": "p", "x": "Este planner no te pide que llenes cada casillero. Te pide lo contrario: que elijas poco y que eso poco pase de verdad."}, {"t": "h", "x": "Cómo se arma"}, {"t": "ol", "x": ["Elegí un día fijo para armarla. Domingo a la tarde o lunes temprano, siempre el mismo. Si esperás a tener ganas, no lo hacés.", "Escribí primero <b>las tres que sí</b>: las tres cosas que, si pasan, la semana valió la pena. Tres. No cinco disfrazadas de tres.", "Recién ahí repartí los días. Una cosa importante por día y nada más. Lo demás entra si sobra tiempo, no al revés.", "Marcá el cuadradito de los 15 minutos cuando hiciste el reset del día. No mide productividad: mide continuidad.", "El viernes o el domingo completá el cierre de semana. Dos minutos. Es lo que hace que la semana siguiente salga mejor que esta."]}, {"t": "why", "x": "Una semana sin decidir de antemano se llena sola con lo que otros necesitan de vos. Elegir tres cosas el domingo es la diferencia entre manejar la semana y correrla de atrás."}, {"t": "tip", "x": "Si una semana se te desarma a la mitad, no empieces una hoja nueva. Seguí en la misma y tachá lo que no pasó. Ver lo que no llegaste a hacer es información, no es un fracaso."}]}, {"id": "b1-semana", "g": "b1", "k": "BONO 1 · PLANNER SEMANAL", "t": "Mi semana", "m": "SE GUARDA SOLO EN ESTE TELÉFONO", "tipo": "texto", "b": [{"t": "fill", "id": "b1_semana", "x": "Semana del", "ph": "5 al 11 de mayo"}, {"t": "h", "x": "Las tres que sí"}, {"t": "fill", "id": "b1_si1", "x": "1", "ph": ""}, {"t": "fill", "id": "b1_si2", "x": "2", "ph": ""}, {"t": "fill", "id": "b1_si3", "x": "3", "ph": ""}, {"t": "h", "x": "Un foco por día · 15 min de reset"}, {"t": "fill", "id": "b1_lun", "x": "Lunes", "ph": ""}, {"t": "fill", "id": "b1_mar", "x": "Martes", "ph": ""}, {"t": "fill", "id": "b1_mie", "x": "Miércoles", "ph": ""}, {"t": "fill", "id": "b1_jue", "x": "Jueves", "ph": ""}, {"t": "fill", "id": "b1_vie", "x": "Viernes", "ph": ""}, {"t": "fill", "id": "b1_sab", "x": "Sábado", "ph": ""}, {"t": "fill", "id": "b1_dom", "x": "Domingo", "ph": ""}, {"t": "h", "x": "Lo demás de la semana"}, {"t": "fill", "id": "b1_zona", "x": "La zona de la casa", "ph": ""}, {"t": "fill", "id": "b1_mi", "x": "Algo que es para mí", "ph": ""}, {"t": "area", "id": "b1_dejo", "x": "Lo que dejo para la semana que viene", "ph": "No se borra: se corre.", "rows": 4}]}, {"id": "b1-cierre", "g": "b1", "k": "BONO 1 · PLANNER SEMANAL", "t": "Cierre de semana", "m": "DOS MINUTOS · ANTES DE ARMAR LA SIGUIENTE", "tipo": "texto", "b": [{"t": "area", "id": "b1_c1", "x": "¿Cuál de las tres que sí pasó de verdad?", "ph": "", "rows": 3}, {"t": "area", "id": "b1_c2", "x": "¿Qué quedó sin hacer y qué se puso adelante?", "ph": "", "rows": 3}, {"t": "area", "id": "b1_c3", "x": "¿Qué se repitió esta semana que puedo sacar?", "ph": "", "rows": 3}, {"t": "area", "id": "b1_c4", "x": "¿Qué día se me fue de las manos y a qué hora empezó?", "ph": "", "rows": 3}, {"t": "fill", "id": "b1_c5", "x": "Una sola cosa que quiero hacer distinto", "ph": ""}, {"t": "h", "x": "Antes de cerrar la hoja"}, {"t": "chk", "id": "b1_cierre", "x": ["Guardé el planner de esta semana donde lo puedo volver a mirar.", "Escribí las tres que sí de la semana que viene."]}, {"t": "q", "x": "No arranques de cero. Seguís desde donde estabas."}]}, {"id": "b2-como", "g": "b2", "k": "BONO 2 · DESCARGA MENTAL", "t": "Cómo se hace", "m": "10 MINUTOS DE ESCRITURA · 5 DE CLASIFICACIÓN", "tipo": "texto", "b": [{"t": "p", "x": "El cansancio de la mañana muchas veces no viene de lo que hiciste, viene de todo lo que estás tratando de no olvidarte. La cabeza no fue hecha para guardar listas: fue hecha para pensar. Cuando la usás de agenda, funciona mal en las dos cosas."}, {"t": "h", "x": "Los cinco pasos"}, {"t": "ol", "x": ["Poné el celular en 10 minutos y dejalo lejos. Necesitás la hoja y una lapicera, nada más.", "Escribí todo lo que se te venga a la cabeza, en el orden que salga. Pendientes, deudas, mensajes sin responder, cosas que le tenés que decir a alguien, cosas que te preocupan aunque no dependan de vos.", "No ordenes, no agrupes, no evalúes si es importante. Si te ponés a ordenar mientras escribís, la cabeza deja de vaciarse. Ordenar viene después.", "Cuando creas que terminaste, quedate dos minutos más en silencio. Lo que aparece al final suele ser lo que más te estaba pesando.", "Recién ahí pasá a la hoja de clasificación y repartí cada cosa en una de las cuatro columnas."]}, {"t": "why", "x": "Una preocupación escrita ocupa un renglón. La misma preocupación adentro de la cabeza ocupa el día entero. No las vas a resolver todas hoy, y no hace falta: alcanza con que dejen de dar vueltas."}, {"t": "tip", "x": "Hacela una vez por semana, siempre el mismo día. Y hacela también cualquier noche que no puedas dormir: casi siempre lo que no te deja dormir son cuatro cosas, no cuarenta."}]}, {"id": "b2-hoja1", "g": "b2", "k": "BONO 2 · DESCARGA MENTAL", "t": "Todo lo que tengo en la cabeza", "m": "10 MINUTOS SIN FILTRAR", "tipo": "texto", "b": [{"t": "p", "x": "Escribilo tal como sale. Después vemos qué hacer con cada cosa. Que sobre lugar es mejor que quedarte con algo adentro."}, {"t": "timer", "x": "Descarga de 10 minutos", "seg": 600}, {"t": "area", "id": "b2_descarga", "x": "Todo lo que tengo en la cabeza", "ph": "Uno por renglón. No ordenes nada.", "rows": 14}]}, {"id": "b2-hoja2", "g": "b2", "k": "BONO 2 · DESCARGA MENTAL", "t": "Qué hago con cada cosa", "m": "CADA RENGLÓN ENTRA EN UNA SOLA COLUMNA", "tipo": "texto", "b": [{"t": "p", "x": "Si lleva menos de cinco minutos, no se anota: se hace."}, {"t": "area", "id": "b2_ahora", "x": "Lo hago ahora", "ph": "", "rows": 5}, {"t": "area", "id": "b2_agenda", "x": "Le pongo día y hora", "ph": "", "rows": 5}, {"t": "area", "id": "b2_delego", "x": "Lo pido o lo delego", "ph": "", "rows": 5}, {"t": "area", "id": "b2_suelto", "x": "Lo suelto", "ph": "", "rows": 5}, {"t": "h", "x": "Las tres que sí de mañana"}, {"t": "fill", "id": "b2_m1", "x": "1", "ph": ""}, {"t": "fill", "id": "b2_m2", "x": "2", "ph": ""}, {"t": "fill", "id": "b2_m3", "x": "3", "ph": ""}, {"t": "tip", "x": "La columna de soltar es la más incómoda y la más importante. Ahí va lo que te preocupa pero no está en tus manos. Escribirlo y dejarlo ahí no es resignarse: es dejar de gastar energía en algo que no se mueve."}, {"t": "q", "x": "La cabeza despejada no es la que no tiene nada. Es la que ya decidió."}]}, {"id": "b3-como", "g": "b3", "k": "BONO 3 · MANTENIMIENTO DEL HOGAR", "t": "Cómo usar este checklist", "m": "DIEZ MINUTOS POR DÍA · UNA ZONA POR SEMANA", "tipo": "texto", "b": [{"t": "p", "x": "Ordenar una casa lleva un fin de semana. Mantenerla ordenada lleva diez minutos por día. La mayoría de nosotras hace lo primero cada tres meses y nunca lo segundo, y por eso el desorden siempre vuelve."}, {"t": "h", "x": "Cómo funciona"}, {"t": "ol", "x": ["Lo diario no se piensa. Son las mismas seis acciones todos los días, siempre a la misma hora. Elegí un momento fijo: después de cenar o antes de salir.", "Una zona por día de la semana. No limpiás toda la casa: limpiás una parte. En siete días pasaste por todo sin haber perdido un solo sábado.", "Si un día no llegás, no lo recuperás. Seguís con la zona que toca. Recuperar es lo que hace que abandones.", "Lo mensual y lo trimestral se agendan con fecha. Si no tienen día, no existen.", "Tené el checklist a la vista. Lo que no está a la vista no se sostiene."]}, {"t": "why", "x": "El desorden no aparece de golpe: se acumula en las cosas que nadie devuelve a su lugar el mismo día. Diez minutos diarios son setenta minutos por semana. Un sábado entero de limpieza son cuatro horas y encima llegás agotada."}, {"t": "tip", "x": "Empezá solo con la lista diaria las primeras dos semanas. Cuando eso ya te sale sin pensar, sumá las zonas semanales. Todo junto desde el día uno no se sostiene."}]}, {"id": "b3-diario", "g": "b3", "k": "BONO 3 · MANTENIMIENTO DEL HOGAR", "t": "El día a día", "m": "DIEZ MINUTOS · SIEMPRE A LA MISMA HORA", "tipo": "texto", "b": [{"t": "h", "x": "Todos los días, sin excepción"}, {"t": "chk", "id": "b3_diario", "x": ["Cada cosa que usé vuelve a su lugar antes de acostarme.", "La pileta queda vacía y la mesada despejada.", "Una tanda de ropa: lavar, colgar o guardar. Una sola.", "Superficies libres: mesa, mesada, mesita de luz.", "La basura sale si está por la mitad. No espero a que rebalse.", "Dejo preparado lo primero de mañana: ropa, bolso, desayuno."]}, {"t": "h", "x": "Una zona por día de la semana"}, {"t": "kv", "x": [["Lunes", "Cocina a fondo"], ["Martes", "Baños"], ["Miércoles", "Dormitorios"], ["Jueves", "Living y pisos"], ["Viernes", "Papeles y pendientes"], ["Sábado", "Compras y heladera"], ["Domingo", "Descanso y armado de la semana"]]}, {"t": "tip", "x": "La columna de la derecha es una sugerencia. Cambiala por las zonas de tu casa: nadie conoce mejor que vos cuál es el rincón que se desarma primero."}]}, {"id": "b3-mensual", "g": "b3", "k": "BONO 3 · MANTENIMIENTO DEL HOGAR", "t": "Lo que no es de todos los días", "m": "UNA VEZ POR MES · CADA TRES MESES", "tipo": "texto", "b": [{"t": "h", "x": "Una vez por mes"}, {"t": "chk", "id": "b3_mes", "x": ["Heladera y alacena: tirar lo vencido, anotar lo que falta.", "Vaciar la caja o el cajón donde se acumula lo que no tiene lugar.", "Sábanas y toallas de toda la casa.", "Revisar vencimientos, facturas y pagos del mes.", "Diez cosas afuera: donar, regalar o tirar.", "Sacudir el felpudo, limpiar espejos y el vidrio de la entrada."]}, {"t": "h", "x": "Cada tres meses"}, {"t": "chk", "id": "b3_trim", "x": ["Placares: rotar la ropa de temporada y sacar lo que no usaste.", "Botiquín: descartar remedios vencidos y reponer lo básico.", "Cortinas, alfombras y almohadas.", "Detrás y debajo de los muebles grandes.", "Fotos y archivos del celular: descargar, guardar, borrar."]}, {"t": "tip", "x": "Elegí un día del mes que no se te olvide, el primer domingo o el día que cobrás. La fecha fija hace más que la fuerza de voluntad."}, {"t": "q", "x": "Una casa ordenada no es la que se limpia mucho. Es la que se desordena poco."}]}, {"id": "b4-problema", "g": "b4", "k": "BONO 4 · RESET DIGITAL", "t": "El problema no es el celular", "m": "LECTURA DE 5 MINUTOS · ANTES DE TOCAR NINGÚN AJUSTE", "tipo": "texto", "b": [{"t": "p", "x": "Nadie decide pasar tres horas por día en el teléfono. Se va en pedacitos: dos minutos en la cola del banco, cinco esperando que hierva el agua, veinte antes de dormir. Sumados, son la tarde libre que decís que no tenés."}, {"t": "p", "x": "Este bono no te pide disciplina. La disciplina contra una app diseñada por cien personas para retenerte no funciona. Lo que funciona es cambiar el entorno: hacer que abrir el teléfono cueste un poco más y que dejarlo cueste un poco menos."}, {"t": "h", "x": "Antes de arrancar, mirá el dato real"}, {"t": "ol", "x": ["Entrá a Ajustes y buscá <b>Tiempo en pantalla</b> o <b>Bienestar digital</b>. Anotá el promedio diario de la última semana y las tres apps de arriba.", "No lo justifiques ni lo compares con nadie. Es un número, no una nota de conducta.", "Hacé los siete ajustes de las páginas que siguen. Llevan quince minutos en total, una sola vez.", "Volvé a mirar el dato a los siete días y anotalo en la última hoja."]}, {"t": "tip", "x": "Casi todas subestimamos el uso a la mitad. Si el número te incomoda, es exactamente el número que necesitabas ver."}]}, {"id": "b4-ajustes-1", "g": "b4", "k": "BONO 4 · RESET DIGITAL", "t": "Lo que hacés una vez y sirve para siempre", "m": "AJUSTES 1 AL 4 · DIEZ MINUTOS", "tipo": "texto", "b": [{"t": "num", "s": 1, "x": [["Apagá todas las notificaciones menos tres", "Dejá activas solo llamadas, mensajes de la familia y la app del banco. Todo lo demás, en silencio y sin globito rojo. Las notificaciones no te avisan cosas: te interrumpen para que vuelvas."], ["Sacá las redes de la primera pantalla", "Metelas en una carpeta en la última pantalla, sin ícono a la vista. La mitad de las veces que abrís una red no la buscabas: la tocaste porque estaba ahí."], ["Cerrá sesión en las dos que más usás", "Tener que escribir la contraseña agrega diez segundos. Diez segundos alcanzan para que te des cuenta de que en realidad ibas a hacer otra cosa."], ["El teléfono no duerme en la mesita de luz", "Cargalo en otra habitación o del otro lado del cuarto. Si lo usás de despertador, comprá un despertador barato: es la mejor compra de organización que vas a hacer este año."]]}, {"t": "tip", "x": "Hacé los cuatro ahora mismo, con la app abierta al lado. Si los dejás para después, ya sabemos cómo termina."}]}, {"id": "b4-ajustes-2", "g": "b4", "k": "BONO 4 · RESET DIGITAL", "t": "Los tres que cuestan un poco más", "m": "AJUSTES 5 AL 7 · CINCO MINUTOS", "tipo": "texto", "b": [{"t": "num", "s": 5, "x": [["Dos franjas de mensajes por día", "Elegí dos momentos para responder todo junto, por ejemplo a las 13 y a las 19. Avisale a quien haga falta. Responder al toque no te hace más atenta: te hace estar disponible las dieciséis horas."], ["La primera hora del día sin pantalla", "Si lo primero que ves es lo que otros necesitan de vos, arrancás el día apagando incendios ajenos. Levantate, tomá algo caliente y recién ahí mirá. Empezá con veinte minutos si una hora te parece imposible."], ["Silencio a partir de una hora fija", "Programá el modo concentración o no molestar todas las noches a la misma hora. Que se apague solo, sin que vos tengas que decidirlo cansada."]]}, {"t": "h", "x": "La regla que sostiene todo"}, {"t": "p", "x": "Antes de desbloquear el teléfono, decí en voz baja para qué lo estás abriendo. Si no te sale una respuesta concreta, no lo abras. Es incómodo los primeros tres días y después se vuelve automático."}, {"t": "tip", "x": "No pongas los siete ajustes el mismo día. Elegí tres esta semana y los otros cuatro la siguiente. Lo que se hace de a poco es lo que queda."}]}, {"id": "b4-hoja", "g": "b4", "k": "BONO 4 · RESET DIGITAL", "t": "Mi reset digital", "m": "ANTES Y DESPUÉS · CON SIETE DÍAS DE DIFERENCIA", "tipo": "texto", "b": [{"t": "h", "x": "El punto de partida"}, {"t": "fill", "id": "b4_antes", "x": "Promedio diario de esta semana", "ph": "2 h 40 min"}, {"t": "fill", "id": "b4_apps", "x": "Mis tres apps de arriba", "ph": ""}, {"t": "h", "x": "Los ajustes que ya hice"}, {"t": "chk", "id": "b4_ajustes", "x": ["Notificaciones apagadas, salvo tres.", "Redes fuera de la primera pantalla.", "Sesión cerrada en las dos que más uso.", "El teléfono duerme fuera del cuarto.", "Dos franjas fijas para responder mensajes.", "Primera hora del día sin pantalla.", "Silencio automático a partir de una hora fija."]}, {"t": "h", "x": "A los siete días"}, {"t": "fill", "id": "b4_despues", "x": "Promedio diario ahora", "ph": "1 h 50 min"}, {"t": "area", "id": "b4_uso", "x": "¿En qué usé el tiempo que recuperé?", "ph": "", "rows": 4}, {"t": "q", "x": "El tiempo no aparece. Se deja de perder."}]}, {"id": "b5-como", "g": "b5", "k": "BONO 5 · TRACKER DE 30 DÍAS", "t": "Cómo usar el tracker", "m": "TRES HÁBITOS COMO MÁXIMO · UN MES", "tipo": "texto", "b": [{"t": "p", "x": "Terminaste los 21 días. El riesgo ahora no es volver atrás de golpe: es ir soltando de a poco, sin darte cuenta, hasta que en marzo no queda nada. Este tracker existe para eso."}, {"t": "h", "x": "Las reglas"}, {"t": "ol", "x": ["Elegí tres hábitos. Tres, no siete. Los que elijas tienen que ser los que más te ordenaron el día durante el programa, no los que más lindo suenan.", "Que sean chicos y medibles. <i>Comer mejor</i> no se puede marcar. <i>Dejar la cocina limpia antes de acostarme</i> sí.", "Marcá el círculo el mismo día, no el domingo de memoria. Marcar al momento es la mitad del efecto.", "<b>Regla de oro: nunca dos veces seguidas.</b> Fallar un día no rompe nada. Fallar dos días seguidos es como empieza el abandono.", "La nota del día es para una palabra, no para un diario: cansada, fácil, visitas. En treinta días esa columna te muestra tus patrones."]}, {"t": "why", "x": "Un hábito no se forma cuando lo hacés con ganas, se forma cuando lo hacés sin ganas y igual lo hacés. El tracker no está para felicitarte los días buenos: está para que los días malos veas la cadena y no la quieras cortar."}, {"t": "tip", "x": "Acá no hace falta imprimirlo ni buscar la lapicera: el tracker de los 30 días está en la sección siguiente y se marca con un toque."}]}, {"id": "b5-tracker", "g": "b5", "k": "BONO 5 · TRACKER DE 30 DÍAS", "t": "Mis 30 días", "m": "TRES HÁBITOS · UN TOQUE POR DÍA", "tipo": "texto", "b": [{"t": "fill", "id": "b5_h1", "x": "Hábito 1", "ph": ""}, {"t": "fill", "id": "b5_h2", "x": "Hábito 2", "ph": ""}, {"t": "fill", "id": "b5_h3", "x": "Hábito 3", "ph": ""}, {"t": "tracker30"}]}, {"id": "b5-cierre", "g": "b5", "k": "BONO 5 · TRACKER DE 30 DÍAS", "t": "Cierre de los 30 días", "m": "CINCO MINUTOS · EL DÍA 30", "tipo": "texto", "b": [{"t": "h", "x": "Los números"}, {"t": "tracker-resumen"}, {"t": "h", "x": "Las preguntas"}, {"t": "area", "id": "b5_p1", "x": "¿Cuál de los tres ya te sale sin pensarlo?", "ph": "", "rows": 3}, {"t": "area", "id": "b5_p2", "x": "¿Cuál te costó todos los días y por qué?", "ph": "", "rows": 3}, {"t": "area", "id": "b5_p3", "x": "Mirando las notas: ¿qué se repite los días que fallaste?", "ph": "", "rows": 3}, {"t": "h", "x": "Los próximos 30"}, {"t": "chk", "id": "b5_prox", "x": ["El hábito que ya me sale solo sale del tracker: no necesita seguimiento.", "El que me costó se queda, pero más chico. La mitad del tamaño.", "Sumo uno nuevo. Uno solo."]}, {"t": "q", "x": "No estás empezando de nuevo. Estás siguiendo."}]}, {"id": "b6-como", "g": "b6", "k": "BONO 6 · 50 COSAS EN 15 MINUTOS", "t": "Para qué sirve esta lista", "m": "QUINCE MINUTOS · SIN DECIDIR NADA", "tipo": "texto", "b": [{"t": "p", "x": "Los ratos de quince minutos son los que más se pierden. No alcanzan para algo grande, así que no arrancás nada, y se van solos. Sumados, son varias horas por semana."}, {"t": "p", "x": "El problema no es la falta de tiempo: es que decidir qué hacer en quince minutos cansa más que hacerlo. Para eso está esta lista. No la leas entera: abrila, tomá la primera que puedas hacer y cerrala."}, {"t": "h", "x": "Cómo usarla"}, {"t": "ol", "x": ["Dejala a mano: acá en la app, o impresa en la heladera.", "Cuando te queden quince minutos libres, no pienses. Elegí una y hacela.", "Marcá las que ya hiciste. Ver la lista marcada motiva más que cualquier frase.", "Si ninguna te sirve hoy, escribí las tuyas al final. La lista es un punto de partida, no un mandato."]}, {"t": "tip", "x": "Poné el cronómetro en quince minutos de verdad. La mitad de la fuerza de esto está en saber que se termina."}, {"t": "q", "x": "Quince minutos no cambian tu vida. Cuarenta de esos quince, sí."}]}, {"id": "b6-lista-1", "g": "b6", "k": "BONO 6 · 50 COSAS EN 15 MINUTOS", "t": "Casa, papeles y pendientes", "m": "DEL 1 AL 25", "tipo": "texto", "b": [{"t": "timer", "x": "Cronómetro de 15 minutos", "seg": 900}, {"t": "h", "x": "En la casa · 1 al 15"}, {"t": "chk", "id": "b6_casa", "x": ["Vaciar y limpiar la pileta de la cocina.", "Ordenar el cajón de los cubiertos.", "Tirar lo vencido de la puerta de la heladera.", "Doblar y guardar una tanda de ropa.", "Hacer la cama y despejar la mesita de luz.", "Juntar diez cosas que no van en ese ambiente y devolverlas.", "Limpiar el espejo del baño y la mesada.", "Cambiar las toallas del baño.", "Sacar la basura y poner bolsa nueva.", "Barrer una sola habitación, la que más se usa.", "Ordenar la mesa del comedor hasta dejarla vacía.", "Regar las plantas y sacarles las hojas secas.", "Limpiar la puerta de la heladera y el microondas.", "Guardar los zapatos que están sueltos por la casa.", "Ordenar el estante que ves apenas entrás."]}, {"t": "h", "x": "Papeles y pendientes · 16 al 25"}, {"t": "chk", "id": "b6_papeles", "x": ["Abrir el correo acumulado y tirar lo que es publicidad.", "Pagar una factura que venís pateando.", "Anotar en el calendario los vencimientos del mes.", "Archivar los papeles del año en una sola carpeta.", "Hacer la lista del súper mirando la heladera.", "Pedir el turno médico que venís postergando.", "Responder los tres mensajes que tenés sin contestar.", "Cancelar una suscripción que no usás.", "Revisar el saldo de las cuentas y anotarlo.", "Buscar el presupuesto que necesitás pedir y mandarlo."]}]}, {"id": "b6-lista-2", "g": "b6", "k": "BONO 6 · 50 COSAS EN 15 MINUTOS", "t": "Cabeza, cuerpo y vínculos", "m": "DEL 26 AL 50", "tipo": "texto", "b": [{"t": "h", "x": "Para la cabeza · 26 al 35"}, {"t": "chk", "id": "b6_cabeza", "x": ["Hacer una descarga mental de diez minutos.", "Escribir las tres cosas que sí van a pasar mañana.", "Sentarte sin teléfono y no hacer nada.", "Anotar tres cosas que salieron bien esta semana.", "Leer diez páginas de un libro de papel.", "Salir al patio o al balcón y respirar despacio.", "Escribir la carta que no vas a mandar.", "Ordenar las fotos del celular y borrar cien.", "Apagar todas las notificaciones menos tres.", "Escuchar dos canciones enteras sin hacer otra cosa."]}, {"t": "h", "x": "Para el cuerpo · 36 al 43"}, {"t": "chk", "id": "b6_cuerpo", "x": ["Caminar quince minutos, aunque sea a la vuelta de la manzana.", "Estirar espalda, cuello y hombros.", "Tomar dos vasos de agua y ponerte una botella a la vista.", "Cortar fruta y dejarla lista en la heladera.", "Preparar la ropa de mañana entera, incluidos los zapatos.", "Darte una ducha sin apuro.", "Acostarte quince minutos antes de lo habitual.", "Dejar el desayuno armado antes de dormir."]}, {"t": "h", "x": "Para los vínculos · 44 al 50"}, {"t": "chk", "id": "b6_vinculos", "x": ["Llamar a alguien a quien hace rato no llamás.", "Mandar un audio diciendo algo bueno, sin pedir nada.", "Preguntarle a tus hijos algo que no sea sobre la escuela.", "Poner al día un chat familiar y salirte de dos grupos.", "Agendar un café con una amiga, con día y hora.", "Escribir la lista de lo que querés para los próximos tres meses.", "Elegir la zona de la casa que arrancás mañana."]}, {"t": "area", "id": "b6_mias", "x": "Las mías", "ph": "Sumá las tuyas acá.", "rows": 4}]}, {"id": "b7-cuando", "g": "b7", "k": "BONO 7 · PLAN PARA DÍAS CAÓTICOS", "t": "Cuándo abrir esta hoja", "m": "EL DÍA QUE NO PODÉS · NO EL DÍA QUE NO QUERÉS", "tipo": "texto", "b": [{"t": "p", "x": "Va a haber días así. No son un fracaso del método: son parte de cualquier vida real. Alguien se enferma, se cae un trabajo, dormiste tres horas, se juntó todo. Esos días el programa no se abandona: se achica."}, {"t": "h", "x": "Cómo funciona el protocolo"}, {"t": "ol", "x": ["No planifiques nada. Hoy no se piensa el día entero, se piensan los próximos veinte minutos.", "Elegí una sola cosa. La que si no pasa te complica mañana. Una, no tres.", "Hacé los cuatro bloques de cinco minutos de la sección siguiente, en orden. Son veinte minutos que devuelven la sensación de piso.", "Bajá la vara sin culpa. Hoy el objetivo no es avanzar: es no retroceder.", "Marcá el día igual. Un día caótico atravesado con lo mínimo también cuenta como día cumplido."]}, {"t": "why", "x": "Los programas no se abandonan el día que estás mal: se abandonan el día después, cuando sentís que ya perdiste el hilo. Tener un plan chiquito para los días malos es lo que hace que al día siguiente sigas."}, {"t": "tip", "x": "Esta sección la tenés siempre a un toque desde el inicio de la app. El día que la necesites no vas a tener cabeza para buscarla."}]}, {"id": "b7-veinte", "g": "b7", "k": "BONO 7 · PLAN PARA DÍAS CAÓTICOS", "t": "Los veinte minutos que ordenan el día", "m": "CUATRO BLOQUES DE CINCO · EN ESTE ORDEN", "tipo": "texto", "b": [{"t": "bloques5", "x": [["Vaciar la cabeza", "Anotá en un papel todo lo que tenés encima, sin ordenar. No lo resolvés: lo sacás de adentro para poder mirarlo."], ["Elegir una sola cosa", "De todo eso, subrayá lo único que, si no pasa hoy, te complica mañana. Lo demás espera. Sí, todo lo demás."], ["Despejar una superficie", "Una sola: la mesada, la mesa o tu escritorio. El cuerpo se calma cuando los ojos encuentran un lugar vacío."], ["Atender el cuerpo", "Agua, algo de comer que no sea café, y sentarte con los pies apoyados. Casi siempre parte del caos es hambre y cansancio."]]}, {"t": "fill", "id": "b7_unica", "x": "Lo único que tiene que pasar hoy", "ph": ""}, {"t": "area", "id": "b7_suelto", "x": "Lo que suelto hasta mañana, sin culpa", "ph": "", "rows": 4}, {"t": "tip", "x": "Si en veinte minutos no llegaste a los cuatro bloques, hiciste dos y está bien. El protocolo no se aprueba: se usa."}]}, {"id": "b7-minimo", "g": "b7", "k": "BONO 7 · PLAN PARA DÍAS CAÓTICOS", "t": "Si hoy no podés con nada", "m": "LA VERSIÓN DE CINCO MINUTOS", "tipo": "texto", "b": [{"t": "p", "x": "Hay días peores todavía. Días en que ni siquiera veinte minutos. Para esos, esto:"}, {"t": "chk", "id": "b7_minimo", "x": ["Tomé un vaso de agua y comí algo.", "Saqué la basura y despejé una sola superficie.", "Dejé preparado lo primero de mañana.", "Me acosté antes de lo que tenía pensado."]}, {"t": "h", "x": "Lo que no hago hoy"}, {"t": "ul", "x": ["No reviso todo lo que quedó sin hacer.", "No armo la semana ni tomo decisiones importantes.", "No me pongo a ordenar algo grande a las once de la noche.", "No hago la cuenta de todo lo que estoy atrasada."]}, {"t": "fill", "id": "b7_manana", "x": "Mañana, lo primero", "ph": ""}, {"t": "tip", "x": "Un día caótico no borra las tres semanas anteriores. Mañana no empezás de cero: seguís desde donde estabas, con un día menos y nada más."}, {"t": "q", "x": "Sostener el día mínimo también es sostener el plan."}]}];
+const GRUPOS=[["libro", "RESET 21 · El libro", "📘"], ["dias", "Los 21 días", "🗓️"], ["b1", "Bono 1 · Planner semanal", "🗒️"], ["b2", "Bono 2 · Descarga mental", "🧠"], ["b3", "Bono 3 · Mantenimiento del hogar", "🏠"], ["b4", "Bono 4 · RESET digital", "📵"], ["b5", "Bono 5 · Tracker de 30 días", "📈"], ["b6", "Bono 6 · 50 cosas en 15 minutos", "⏱️"], ["b7", "Bono 7 · Plan para días caóticos", "🆘"]];
+
+const ETAPAS={1:{t:"Despejar",d:"Antes de construir cualquier sistema hay que bajar el ruido. Esta primera semana no organiza: descarga, saca y mide."},
+2:{t:"Organizar",d:"Con la cabeza más despejada, ahora sí se construye. Esta semana arma la estructura."},
+3:{t:"Transformar",d:"Lo que se sostiene después del día 21. Un hábito, un entorno y un plan para las semanas malas."}};
+
+const HABITOS=["Marqué el casillero del día","Diez cosas afuera o reset de 15 minutos","Escribí mis tres prioridades","Quince minutos únicamente míos","Un bloque del día sin teléfono","Hice mi hábito chico"];
+
+const CONCEPTOS=[
+{i:"🔤",t:"Las cuatro letras de la descarga",b:"Cada pendiente de tu lista recibe una letra. <b>H</b>: se hace en menos de quince minutos. <b>P</b>: necesita día y hora. <b>D</b>: lo puede hacer otra persona. <b>E</b>: en realidad ya no importa, y se tacha hoy mismo. Clasificar no es ordenar: es sacarte de encima todo lo que nunca iba a pasar."},
+{i:"🛍️",t:"La pregunta de los tres segundos",b:"Para decidir si un objeto se queda o se va, una sola pregunta: <b>¿lo volvería a comprar hoy?</b> Si dudás más de tres segundos, va a la caja. Diez cosas por día son doscientas diez en veintiún días, y nadie extraña ninguna."},
+{i:"3️⃣",t:"El método de las tres prioridades",b:"Tres cosas por día, nunca cuatro. La <b>1</b> es la que más te libera si la hacés, la <b>2</b> la que tiene fecha, la <b>3</b> la que venís pateando hace más tiempo. Todo lo demás pasa a una lista llamada <i>después</i>: no se borra, se corre. Si algo no entra tres veces seguidas, no es prioridad."},
+{i:"🧱",t:"Bloques por tipo, no por urgencia",b:"Agrupá las tareas por tipo — llamadas, trámites, casa, trabajo concentrado, compras — y dale a cada grupo un momento fijo. Los bloques se escriben en la agenda como turnos médicos: un turno no se mueve porque alguien te escribió."},
+{i:"🕳️",t:"El hueco vacío a propósito",b:"En tu día ideal, además de lo fijo y de los tres bloques, dejás al menos un hueco vacío. Ese hueco es el que absorbe lo imprevisto sin que se caiga todo lo demás. Una rutina que no lo tiene se rompe el primer martes."},
+{i:"⏱️",t:"Los quince minutos",b:"Las tareas gigantes se desarman en tramos de quince minutos, con cronómetro de verdad. Cuando suena, se para, aunque tengas ganas de seguir. También sirve al revés: cuando te quedan quince minutos sueltos, no los decidís, los usás."},
+{i:"🔁",t:"Señal, acción, recompensa, entorno",b:"<b>Señal:</b> enganchá el hábito a algo que ya hacés todos los días. <b>Acción:</b> tan chica que entre en un día malo. <b>Recompensa:</b> algo agradable e inmediato. <b>Entorno:</b> todo preparado la noche anterior. La motivación cambia de humor; el entorno no."},
+{i:"🏠",t:"Una zona por día",b:"Lunes cocina, martes baños, miércoles dormitorios, jueves living y pisos, viernes papeles, sábado compras y heladera, domingo descanso y armado de la semana. Quince minutos por zona. Una casa ordenada no es la que se limpia mucho: es la que se desordena poco."}];
+
+const FRASES=[
+"No necesitás más horas. Necesitás menos cosas compitiendo por las mismas horas.",
+"Una lista de veinte tareas no es una lista, es una acusación.",
+"Cada sí automático es un no silencioso a algo tuyo.",
+"Tu cabeza no está hecha para almacenar pendientes, está hecha para resolverlos.",
+"Una casa ordenada no es la que se limpia mucho. Es la que se desordena poco.",
+"Quince minutos no cambian tu vida. Cuarenta de esos quince, sí.",
+"La motivación sube y baja sola, no la controlás. El entorno sí se diseña.",
+"Si tu día ideal necesita que te levantes a las cinco, no es tu día ideal: es el de otra persona.",
+"Ver lo que no llegaste a hacer es información, no es un fracaso.",
+"No estás empezando de nuevo. Estás siguiendo."];
+
+const TEST=["Termino el día con la sensación de no haber avanzado en nada.",
+"Tengo pendientes anotados en más de tres lugares distintos.",
+"Empiezo sistemas de organización y los abandono antes del mes.",
+"Siento saturación mental incluso cuando no estoy haciendo nada.",
+"Hay al menos un espacio de mi casa que evito mirar.",
+"Digo que sí a cosas que después me arrepiento de haber aceptado.",
+"Reviso el teléfono sin decidirlo, de manera automática.",
+"No sé con precisión en qué se me va el tiempo entre las 8 y las 20.",
+"No tengo ningún momento del día que sea únicamente mío.",
+"Me siento culpable cuando descanso."];
+
+const QUIZ=[
+{q:"En el mapa de pendientes del día 1, ¿qué significa la letra E?",o:["Que es urgente","Que ya no importa y se tacha hoy","Que lo hace otra persona","Que necesita día y hora"],c:1},
+{q:"¿Cuántas cosas se sacan de casa el día 2?",o:["Todas las que puedas","Diez","Una por ambiente","Las que estén rotas"],c:1},
+{q:"¿Cuál es la pregunta para decidir rápido si un objeto se queda?",o:["¿Me hace feliz?","¿Lo usé este año?","¿Lo volvería a comprar hoy?","¿Tiene arreglo?"],c:2},
+{q:"El día 4 pide una sola cosa. ¿Cuál?",o:["Registrar sin cambiar nada","Bajar el uso del teléfono","Levantarte más temprano","Ordenar la cocina"],c:0},
+{q:"¿Cuántas prioridades por día propone el método?",o:["Cinco","Las que entren","Tres","Una sola"],c:2},
+{q:"Al decir que no, ¿cuántas razones alcanzan?",o:["Ninguna","Una","Dos","Las que hagan falta"],c:1},
+{q:"¿Qué hay que dejar a propósito en el día ideal?",o:["El desayuno sin horario","Un hueco vacío","Una tarea sin hacer","La noche libre"],c:1},
+{q:"¿Cuál es la regla para no abandonar un hábito?",o:["Hacerlo siempre a la misma hora","Nunca dos días seguidos sin hacerlo","No fallar ningún día","Empezar un lunes"],c:1},
+{q:"Si un día del programa se cae, ¿qué se hace?",o:["Se recupera al día siguiente","Se arranca de cero","Se compensa el fin de semana","Se sigue al día siguiente donde estabas"],c:3}];
+
+const RULETA=[
+{t:"Diez cosas afuera",d:"Agarrá la bolsa y sacá diez cosas de tu casa antes de que termine el día.",c:"#da5db0"},
+{t:"Un cajón entero",d:"Elegí un cajón chico: sacar, clasificar, limpiar, organizar. Veinte minutos y queda terminado.",c:"#7f45e3"},
+{t:"Tus tres prioridades",d:"Escribilas en un papel chico y dejálo donde lo veas sí o sí.",c:"#e6c17a"},
+{t:"Una hora sin teléfono",d:"Dejálo cargando fuera de la habitación y no lo toques hasta que termine.",c:"#b2489a"},
+{t:"Quince minutos tuyos",d:"Agendalos con hora, avisá en casa y protegelos como un turno médico.",c:"#5f33ad"},
+{t:"Cerrá una H",d:"Buscá en tu lista la tarea más rápida y cerrala antes de dormir.",c:"#c9a35f"},
+{t:"Quince de cocina",d:"Cronómetro en quince minutos: heladera, mesada o alacena. Lo que llegues, llegaste.",c:"#e07ac0"},
+{t:"Decí que no a una",d:"Elegí un compromiso de esta semana y resolvélo: delegálo, corrélo o cancelálo.",c:"#8f57e8"}];
+
+const COMIDAS=[
+{t:"Huevos revueltos con lo que haya",d:"Dos huevos, un chorrito de leche y lo que sobró en la heladera: tomate, queso, espinaca, cebolla. Siete minutos de sartén."},
+{t:"Ensalada de garbanzos",d:"Una lata de garbanzos escurrida, tomate, cebolla morada, aceite de oliva y limón. Se arma en cinco minutos y aguanta dos días."},
+{t:"Fideos con salsa de tomate casera",d:"Mientras hierve el agua, tomate triturado con ajo y aceite en una sartén. Todo listo cuando salen los fideos."},
+{t:"Tortilla de papa exprés",d:"Papa rallada en lugar de papa hervida. Cocina en diez minutos en vez de treinta."},
+{t:"Wok de verduras y arroz",d:"Arroz que te haya sobrado, cualquier verdura cortada fina y salsa de soja. Fuego fuerte, seis minutos."},
+{t:"Tostadas completas",d:"Pan tostado, palta o queso untable, huevo duro o atún y algo verde. Cena real en diez minutos."},
+{t:"Sopa de lo que quedó",d:"Verduras del fondo del cajón, caldo y licuadora. Se congela en porciones y resuelve una noche de la semana."},
+{t:"Bowl de yogur",d:"Yogur natural, avena, fruta y algo crocante. Desayuno o cena liviana, sin cocinar nada."}];
+
+const QUINCE=["Vaciar y limpiar un cajón","Tirar lo vencido de la heladera","Anotar los pagos del mes","Cambiar las sábanas","Doblar y guardar una pila de ropa","Borrar fotos repetidas del celular","Llamar a esa persona que venís pateando","Regar y limpiar las plantas","Ordenar el bolso o la cartera","Sacar diez cosas para donar","Limpiar el espejo y la mesada del baño","Escribir las tres prioridades de mañana","Dejar preparada la ropa de mañana","Caminar diez minutos a la vuelta de casa","Leer dos páginas de un libro","Sacudir el felpudo y limpiar la entrada","Revisar y archivar los papeles del mes","Preparar una tanda de comida para congelar","Hacer la lista de compras de la semana","Sentarte quince minutos a no hacer nada"];
+
+const MEDALLAS=[
+{i:"🌱",t:"Día uno",d:"Completaste tu primer día",f:s=>done(s)>=1},
+{i:"🧹",t:"Etapa Despejar",d:"Terminaste los siete primeros días",f:s=>[1,2,3,4,5,6,7].every(n=>s.dias[n]&&s.dias[n].done)},
+{i:"🗂️",t:"Etapa Organizar",d:"Terminaste hasta el día 14",f:s=>[8,9,10,11,12,13,14].every(n=>s.dias[n]&&s.dias[n].done)},
+{i:"👑",t:"RESET completo",d:"Los 21 días marcados",f:s=>done(s)>=21},
+{i:"🔥",t:"Racha de cinco",d:"Cinco días seguidos marcados",f:s=>racha(s)>=5},
+{i:"💧",t:"Semana hidratada",d:"Ocho vasos en cinco días distintos",f:s=>Object.values(s.agua).filter(v=>v>=8).length>=5},
+{i:"📔",t:"Cuaderno abierto",d:"Diez entradas en el diario",f:s=>s.diario.length>=10},
+{i:"🎯",t:"Punto de partida",d:"Hiciste el test inicial",f:s=>s.testIni.filter(Boolean).length===10},
+{i:"🧠",t:"Trivia perfecta",d:"Nueve de nueve en la trivia",f:s=>s.quizBest>=9},
+{i:"🎡",t:"Cinco desafíos",d:"Giraste la ruleta cinco veces",f:s=>s.spins>=5},
+{i:"✅",t:"Hábitos firmes",d:"Todos los hábitos en tres días",f:s=>Object.values(s.habitos).filter(a=>a.length>=HABITOS.length).length>=3},
+{i:"📈",t:"Antes y después",d:"Completaste el test del día 21",f:s=>s.testFin.filter(Boolean).length===10}];
+
+const NAV=[["inicio","🏠","Inicio"],["dias","📖","21 días"],["libro","📕","Libro"],["habitos","✅","Hábitos"],["agua","💧","Agua"],["comidas","🍽️","15 min"],["conceptos","🗂️","Conceptos"],["frases","💬","Frases"],["ruleta","🎡","Ruleta"],["test","🎯","Test"],["quiz","❓","Trivia"],["diario","📔","Diario"],["logros","🏆","Logros"],["ajustes","⚙️","Ajustes"]];
+
+/* ═══════════ ESTADO ═══════════ */
+const KEY='reset21_app_v1';
+const hoy=()=>new Date().toISOString().slice(0,10);
+let S=cargar();
+
+function base(){return{dias:{},habitos:{},agua:{},diario:[],testIni:Array(10).fill(0),testFin:Array(10).fill(0),quizBest:0,spins:0,tema:'dark',fraseRef:'',medallas:[],visto:false,quince:[],libro:{leidas:{},campos:{},checks:{},tr:{},ultima:'',fs:1}}}
+function cargar(){
+  try{const r=JSON.parse(localStorage.getItem(KEY)||'null');return r?Object.assign(base(),r):base()}
+  catch(e){return base()}
+}
+function guardar(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function done(s){return Object.values(s.dias).filter(d=>d.done).length}
+function racha(s){let r=0,max=0;for(let n=1;n<=21;n++){if(s.dias[n]&&s.dias[n].done){r++;if(r>max)max=r}else r=0}return max}
+
+/* ═══════════ UTIL ═══════════ */
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._i);t._i=setTimeout(()=>t.classList.remove('on'),2200)}
+function entrar(){
+  document.getElementById('welcome').style.display='none';
+  document.getElementById('app').classList.add('on');
+  S.visto=true;guardar();
+}
+function toggleTheme(){
+  const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  document.getElementById('btnTheme').textContent=n==='dark'?'🌙':'☀️';
+  S.tema=n;guardar();
+}
+let vista='inicio';
+function go(v){
+  vista=v;
+  document.querySelectorAll('section.view').forEach(s=>s.classList.remove('on'));
+  const el=document.getElementById('v-'+v);if(el)el.classList.add('on');
+  document.querySelectorAll('.nav-b').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════ NAV ═══════════ */
+function pintarNav(){
+  const nav=document.getElementById('nav');
+  NAV.forEach(([v,i,t])=>{
+    const b=document.createElement('button');
+    b.className='nav-b'+(v==='inicio'?' on':'');b.dataset.v=v;
+    b.innerHTML='<i>'+i+'</i>'+t;
+    b.onclick=()=>go(v);
+    nav.appendChild(b);
+  });
+}
+
+/* ═══════════ INICIO ═══════════ */
+function pintarInicio(){
+  const d=done(S),pct=Math.round(d/21*100);
+  document.getElementById('topFill').style.width=pct+'%';
+  document.getElementById('topNum').textContent=d+' / 21';
+  const deg=pct*3.6;
+  document.getElementById('ring').style.background='conic-gradient(var(--brand) 0deg,var(--accent) '+deg+'deg,var(--surface-2) '+deg+'deg)';
+  document.getElementById('ringNum').textContent=pct+'%';
+  const prox=DIAS.find(x=>!(S.dias[x.n]&&S.dias[x.n].done))||DIAS[20];
+  document.getElementById('ringTitle').textContent='Día '+prox.n;
+  document.getElementById('ringSub').textContent=prox.t;
+  document.getElementById('heroHi').textContent=d===0?'Empezamos':(d>=21?'Terminaste los 21 días':'Vas por el día '+prox.n);
+  document.getElementById('heroLine').textContent=d===0
+    ?'Los primeros días son fáciles a propósito. Lo que hace que un método funcione no es la intensidad: es no abandonarlo en el día cuatro.'
+    :(d>=21?'Ya tenés el sistema completo. Ahora se sostiene, que es la parte que de verdad cambia los días.'
+    :'Una consigna por día, chiquita, que se puede hacer hoy, en el medio de tu vida tal cual es.');
+  document.getElementById('stDias').textContent=d;
+  document.getElementById('stRacha').textContent=racha(S);
+  document.getElementById('stMedallas').textContent=MEDALLAS.filter(m=>m.f(S)).length;
+  document.getElementById('qAgua').textContent=(S.agua[hoy()]||0)+' de 8 vasos';
+  document.getElementById('qDiario').textContent=S.diario.length+(S.diario.length===1?' entrada guardada':' entradas guardadas');
+  const ti=S.testIni.filter(Boolean).length===10;
+  document.getElementById('qTest').textContent=ti?('Tu puntaje: '+S.testIni.reduce((a,b)=>a+b,0)+' de 50'):'Sin hacer todavía';
+  pintarHabitos('homeHabits');
+}
+function irAlDiaDeHoy(){const p=DIAS.find(x=>!(S.dias[x.n]&&S.dias[x.n].done))||DIAS[20];abrirDia(p.n)}
+
+/* ═══════════ DÍAS ═══════════ */
+let filtroEtapa=0;
+function pintarChips(){
+  const c=document.getElementById('stageChips');c.innerHTML='';
+  [[0,'Los 21'],[1,'1 · Despejar'],[2,'2 · Organizar'],[3,'3 · Transformar']].forEach(([v,t])=>{
+    const b=document.createElement('button');
+    b.className='chip clickable'+(filtroEtapa===v?' on':'');b.textContent=t;
+    b.onclick=()=>{filtroEtapa=v;pintarChips();pintarDias()};
+    c.appendChild(b);
+  });
+}
+function pintarDias(){
+  const g=document.getElementById('daysGrid');g.innerHTML='';
+  const prox=(DIAS.find(x=>!(S.dias[x.n]&&S.dias[x.n].done))||{}).n;
+  DIAS.filter(d=>!filtroEtapa||d.etapa===filtroEtapa).forEach(d=>{
+    const ok=S.dias[d.n]&&S.dias[d.n].done;
+    const b=document.createElement('button');
+    b.className='day-cell clickable'+(ok?' done':'')+(d.n===prox?' today':'');
+    b.innerHTML=(ok?'<span class="tick">✓</span>':'')+'<u>'+d.n+'</u><small>'+d.t.split(' ').slice(0,3).join(' ')+'</small>';
+    b.onclick=()=>abrirDia(d.n);
+    g.appendChild(b);
+  });
+}
+function abrirDia(n){
+  const d=DIAS.find(x=>x.n===n);if(!d)return;
+  const st=S.dias[n]||{done:false,ref:''};
+  const e=ETAPAS[d.etapa];
+  document.getElementById('diaDetalle').innerHTML=`
+  <div class="day-head"><div class="day-num">${d.n}</div>
+    <div><div class="eyebrow" style="margin-bottom:4px">ETAPA ${d.etapa} · ${e.t.toUpperCase()}</div>
+    <h2 class="h-view" style="font-size:clamp(1.7rem,7vw,2.4rem)">${d.t}</h2></div></div>
+  <div class="day-meta">${d.h.toUpperCase()} · ${d.min.toUpperCase()}</div>
+  <div class="card">
+    <div class="label">QUÉ HACER HOY</div>
+    <ol class="steps">${d.pasos.map(p=>'<li><span>'+p+'</span></li>').join('')}</ol>
+    <div class="why"><h4>Por qué importa</h4>${d.why}</div>
+    <div class="tip"><b>Tip.</b> ${d.tip}</div>
+  </div>
+  <div class="card">
+    <div class="label">TU RESPUESTA</div>
+    <p style="font-size:.93rem;color:var(--text-soft);margin-bottom:10px">${d.ref}</p>
+    <textarea id="refDia" rows="4" placeholder="Escribí acá. Se guarda solo.">${(st.ref||'').replace(/</g,'&lt;')}</textarea>
+    <div class="row" style="margin-top:12px">
+      <button class="btn sm ghost" onclick="guardarRef(${n})">Guardar respuesta</button>
+    </div>
+  </div>
+  <button class="btn ${st.done?'gold':''}" id="btnDone" style="width:100%" onclick="marcarDia(${n})">${st.done?'✓ Día '+n+' cumplido':'Marcar día '+n+' como cumplido'}</button>
+  <div class="day-nav">
+    <button class="btn ghost sm" style="flex:1" ${n===1?'disabled':''} onclick="abrirDia(${n-1})">← Día ${n-1}</button>
+    <button class="btn ghost sm" style="flex:1" ${n===21?'disabled':''} onclick="abrirDia(${n+1})">Día ${n+1} →</button>
+  </div>`;
+  go('dia');
+}
+function guardarRef(n){
+  const v=document.getElementById('refDia').value;
+  S.dias[n]=Object.assign({done:false,ref:''},S.dias[n],{ref:v});guardar();toast('Respuesta guardada');
+}
+function marcarDia(n){
+  const st=S.dias[n]||{done:false,ref:''};
+  const ref=document.getElementById('refDia');if(ref)st.ref=ref.value;
+  st.done=!st.done;S.dias[n]=st;guardar();
+  pintarInicio();pintarDias();pintarMedallas();
+  const _bd=document.getElementById('btnDone');
+  if(_bd){_bd.textContent=st.done?('✓ Día '+n+' cumplido'):('Marcar día '+n+' como cumplido');_bd.classList.toggle('gold',st.done)}
+  if(vista==='lectura')pintarLectura('dia-'+n,true);
+  if(st.done){
+    const d=done(S);
+    if(n===7)celebrar('🌿','Primera semana lista','Despejaste. Ya no estás organizando sobre el ruido: ahora se puede construir.');
+    else if(n===14)celebrar('🧭','Dos semanas','Acá es donde casi todos los métodos se abandonan. Vos tenés estructura.');
+    else if(n===21)celebrar('👑','Los 21 días','No estás empezando de nuevo. Estás siguiendo.');
+    else if(d===1)celebrar('🌱','Día uno hecho','Lo que hace que un método funcione no es la intensidad: es no abandonarlo en el día cuatro.');
+    else if(d%5===0)celebrar('🔥',d+' días marcados','Seguís. Que es exactamente lo que se pedía.');
+    else toast('Día '+n+' cumplido');
+  }else toast('Día '+n+' desmarcado');
+}
+function celebrar(em,t,txt){
+  document.getElementById('celEm').textContent=em;
+  document.getElementById('celTitle').textContent=t;
+  document.getElementById('celText').textContent=txt;
+  document.getElementById('celebrate').classList.add('on');
+  confeti();
+}
+function cerrarCelebracion(e){
+  if(e!==true&&e.target.id!=='celebrate')return;
+  document.getElementById('celebrate').classList.remove('on');
+}
+function confeti(){
+  const c=document.createElement('div');c.className='confetti';
+  const cols=['#da5db0','#7f45e3','#e6c17a','#f4eef7'];
+  for(let i=0;i<44;i++){
+    const p=document.createElement('i');
+    p.style.left=Math.random()*100+'vw';p.style.top='-20px';
+    p.style.background=cols[i%4];
+    p.style.animationDuration=(2+Math.random()*1.8)+'s';
+    p.style.animationDelay=(Math.random()*.6)+'s';
+    c.appendChild(p);
+  }
+  document.body.appendChild(c);setTimeout(()=>c.remove(),4600);
+}
+
+/* ═══════════ HÁBITOS ═══════════ */
+function pintarHabitos(cont){
+  const k=hoy(),arr=S.habitos[k]||[];
+  const el=document.getElementById(cont||'habList');if(!el)return;
+  el.innerHTML='';
+  HABITOS.forEach((h,i)=>{
+    const on=arr.includes(i);
+    const b=document.createElement('button');
+    b.className='check clickable'+(on?' on':'');
+    b.innerHTML='<span class="box">✓</span><span>'+h+'</span>';
+    b.onclick=()=>{
+      const a=S.habitos[k]||[];
+      const j=a.indexOf(i);j>-1?a.splice(j,1):a.push(i);
+      S.habitos[k]=a;guardar();
+      pintarHabitos('habList');pintarHabitos('homeHabits');pintarTracker();pintarMedallas();
+      if(a.length===HABITOS.length)toast('Los seis hábitos de hoy, hechos');
+    };
+    el.appendChild(b);
+  });
+  const f=document.getElementById('habDate');
+  if(f)f.textContent=new Date().toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'}).toUpperCase();
+}
+function pintarTracker(){
+  const el=document.getElementById('habTracker');if(!el)return;
+  const dias=[];for(let i=20;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);dias.push(d)}
+  let h='<table><tr><th></th>'+dias.map(d=>'<th style="text-align:center;font-size:.58rem">'+d.getDate()+'</th>').join('')+'</tr>';
+  HABITOS.forEach((hb,i)=>{
+    h+='<tr><th>'+hb.split(' ').slice(0,2).join(' ')+'</th>';
+    dias.forEach(d=>{
+      const k=d.toISOString().slice(0,10);
+      const on=(S.habitos[k]||[]).includes(i);
+      h+='<td><button class="clickable'+(on?' on':'')+'" onclick="toggleTracker(\''+k+'\','+i+')">'+(on?'✓':'')+'</button></td>';
+    });
+    h+='</tr>';
+  });
+  el.innerHTML=h+'</table>';
+}
+function toggleTracker(k,i){
+  const a=S.habitos[k]||[];const j=a.indexOf(i);j>-1?a.splice(j,1):a.push(i);
+  S.habitos[k]=a;guardar();pintarTracker();pintarHabitos('habList');pintarHabitos('homeHabits');pintarMedallas();
+}
+
+/* ═══════════ AGUA ═══════════ */
+function pintarAgua(){
+  const k=hoy(),v=S.agua[k]||0;
+  const g=document.getElementById('glasses');g.innerHTML='';
+  for(let i=1;i<=8;i++){
+    const b=document.createElement('button');
+    b.className='glass clickable'+(i<=v?' on':'');
+    b.innerHTML='<div class="water"></div><span>'+(i<=v?'💧':i)+'</span>';
+    b.onclick=()=>{S.agua[k]=(v===i?i-1:i);guardar();pintarAgua();pintarInicio();pintarMedallas();
+      if(S.agua[k]===8)toast('Ocho vasos. Listo por hoy.')};
+    g.appendChild(b);
+  }
+  document.getElementById('aguaTxt').textContent=v+' de 8';
+  const w=document.getElementById('aguaWeek');w.innerHTML='';
+  for(let i=6;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const val=S.agua[d.toISOString().slice(0,10)]||0;
+    const div=document.createElement('div');
+    div.innerHTML='<div class="bar" style="height:'+Math.max(4,val/8*100)+'%"></div><small>'+['D','L','M','X','J','V','S'][d.getDay()]+'</small>';
+    w.appendChild(div);
+  }
+}
+function resetAgua(){S.agua[hoy()]=0;guardar();pintarAgua();pintarInicio();toast('Agua reiniciada')}
+
+/* ═══════════ COMIDAS / 15 MIN ═══════════ */
+function pintarComidas(){
+  const c=document.getElementById('comidasList');c.innerHTML='';
+  COMIDAS.forEach(m=>c.appendChild(acordeon('🍳',m.t,m.d)));
+  const q=document.getElementById('quinceList');q.innerHTML='';
+  S.quince=S.quince||[];
+  QUINCE.forEach((t,i)=>{
+    const on=S.quince.includes(i);
+    const b=document.createElement('button');
+    b.className='check clickable'+(on?' on':'');
+    b.innerHTML='<span class="box">✓</span><span>'+t+'</span>';
+    b.onclick=()=>{const j=S.quince.indexOf(i);j>-1?S.quince.splice(j,1):S.quince.push(i);guardar();pintarComidas()};
+    q.appendChild(b);
+  });
+}
+function acordeon(icon,titulo,cuerpo){
+  const d=document.createElement('div');d.className='acc';
+  d.innerHTML='<button class="clickable"><i>'+icon+'</i><b>'+titulo+'</b><em>+</em></button><div class="body"><div>'+cuerpo+'</div></div>';
+  const body=d.querySelector('.body');
+  d.querySelector('button').onclick=()=>{
+    const open=d.classList.toggle('open');
+    body.style.maxHeight=open?body.scrollHeight+40+'px':'0px';
+  };
+  return d;
+}
+function pintarConceptos(){
+  const c=document.getElementById('concepts');c.innerHTML='';
+  CONCEPTOS.forEach(x=>c.appendChild(acordeon(x.i,x.t,x.b)));
+}
+
+/* ═══════════ FRASES ═══════════ */
+function pintarFrases(){
+  const c=document.getElementById('frasesCar');c.innerHTML='';
+  FRASES.forEach((f,i)=>{
+    const d=document.createElement('div');d.className='slide';
+    d.innerHTML='<div class="n">'+String(i+1).padStart(2,'0')+' DE 10</div><q>'+f+'</q><small>RESET 21 · SILVI AURA</small>';
+    c.appendChild(d);
+  });
+  document.getElementById('fraseRef').value=S.fraseRef||'';
+}
+function guardarFraseRef(){S.fraseRef=document.getElementById('fraseRef').value;guardar();toast('Respuesta guardada')}
+
+/* ═══════════ RULETA ═══════════ */
+let ang=0,girando=false;
+function pintarRuleta(){
+  const seg=360/RULETA.length;
+  const stops=RULETA.map((r,i)=>r.c+' '+(i*seg)+'deg '+((i+1)*seg)+'deg').join(',');
+  document.getElementById('wheel').style.background='conic-gradient('+stops+')';
+}
+function girar(){
+  if(girando)return;girando=true;
+  document.getElementById('btnSpin').disabled=true;
+  const i=Math.floor(Math.random()*RULETA.length);
+  const seg=360/RULETA.length;
+  const objetivo=360*6+(360-(i*seg+seg/2));
+  ang+=objetivo;
+  document.getElementById('wheel').style.transform='rotate('+ang+'deg)';
+  setTimeout(()=>{
+    const r=RULETA[i];
+    document.getElementById('wheelResult').innerHTML='<h3>'+r.t+'</h3><p>'+r.d+'</p>';
+    S.spins=(S.spins||0)+1;guardar();pintarMedallas();pintarInicio();
+    girando=false;document.getElementById('btnSpin').disabled=false;
+  },4500);
+}
+
+/* ═══════════ TEST ═══════════ */
+let testModo='inicial';
+function setTestModo(m){
+  testModo=m;
+  document.getElementById('tabIni').classList.toggle('on',m==='inicial');
+  document.getElementById('tabFin').classList.toggle('on',m==='final');
+  pintarTest();
+}
+function pintarTest(){
+  const arr=testModo==='inicial'?S.testIni:S.testFin;
+  const c=document.getElementById('testCard');c.innerHTML='';
+  TEST.forEach((t,i)=>{
+    const d=document.createElement('div');d.className='q-item';
+    let h='<p>'+(i+1)+'. '+t+'</p><div class="scale">';
+    for(let v=1;v<=5;v++)h+='<button class="clickable'+(arr[i]===v?' on':'')+'" onclick="setTest('+i+','+v+')">'+v+'</button>';
+    d.innerHTML=h+'</div>';c.appendChild(d);
+  });
+  pintarResultadoTest();
+}
+function setTest(i,v){
+  const arr=testModo==='inicial'?S.testIni:S.testFin;
+  arr[i]=arr[i]===v?0:v;guardar();pintarTest();pintarInicio();pintarMedallas();
+}
+function pintarResultadoTest(){
+  const box=document.getElementById('testResult');
+  const arr=testModo==='inicial'?S.testIni:S.testFin;
+  if(arr.filter(Boolean).length<10){box.style.display='none';return}
+  const p=arr.reduce((a,b)=>a+b,0);
+  let txt;
+  if(p<=20)txt='Tenés una base ordenada y este programa te va a servir para afinarla.';
+  else if(p<=35)txt='Hay sobrecarga en varias áreas al mismo tiempo, que es exactamente para lo que está hecho RESET 21.';
+  else txt='Estás sosteniendo demasiado sola. Empezá por el día 1 sin saltear nada y no te exijas ir más rápido.';
+  let comp='';
+  const ini=S.testIni.reduce((a,b)=>a+b,0),fin=S.testFin.reduce((a,b)=>a+b,0);
+  if(S.testIni.filter(Boolean).length===10&&S.testFin.filter(Boolean).length===10){
+    const dif=ini-fin;
+    comp='<div class="tip" style="margin-top:18px"><b>Antes y después.</b> Empezaste en '+ini+' y hoy estás en '+fin+'. '+
+      (dif>0?'Bajaste '+dif+' puntos de carga en veintiún días.':dif===0?'El número es el mismo: mirá qué preguntas se movieron, ahí está el cambio real.':'Subió '+Math.abs(dif)+' puntos. Fue una semana pesada, no un fracaso del método.')+'</div>';
+  }
+  box.style.display='block';
+  box.innerHTML='<div class="result-box"><div class="big">'+p+'</div><div class="label" style="margin:8px 0 14px">DE 50 PUNTOS</div><p style="color:var(--text-soft);font-size:.95rem;max-width:40ch;margin:0 auto">'+txt+'</p></div>'+comp;
+}
+
+/* ═══════════ QUIZ ═══════════ */
+let qIdx=0,qScore=0,qLock=false;
+function pintarQuiz(){
+  const c=document.getElementById('quizCard');
+  if(qIdx>=QUIZ.length){
+    let m;
+    if(qScore===9)m='Perfecto. Te sabés el método de memoria.';
+    else if(qScore>=6)m='Muy bien. Lo importante ya lo tenés claro.';
+    else m='Volvé a las tarjetas de conceptos y probá de nuevo. No es examen.';
+    c.innerHTML='<div class="result-box"><div class="big">'+qScore+'/9</div><p style="color:var(--text-soft);margin:14px auto 20px;max-width:34ch">'+m+'</p><button class="btn" onclick="reiniciarQuiz()">Jugar de nuevo</button></div>';
+    if(qScore>(S.quizBest||0)){S.quizBest=qScore;guardar();pintarMedallas()}
+    return;
+  }
+  const q=QUIZ[qIdx];
+  c.innerHTML='<div class="label">PREGUNTA '+(qIdx+1)+' DE 9 · PUNTAJE '+qScore+'</div><p style="font-size:1.05rem;margin-bottom:16px">'+q.q+'</p>'+
+    q.o.map((o,i)=>'<button class="opt clickable" data-i="'+i+'" onclick="responder('+i+')">'+o+'</button>').join('');
+}
+function responder(i){
+  if(qLock)return;qLock=true;
+  const q=QUIZ[qIdx];
+  document.querySelectorAll('#quizCard .opt').forEach(b=>{
+    const j=+b.dataset.i;
+    if(j===q.c)b.classList.add('right');
+    else if(j===i)b.classList.add('wrong');
+  });
+  if(i===q.c)qScore++;
+  setTimeout(()=>{qIdx++;qLock=false;pintarQuiz()},900);
+}
+function reiniciarQuiz(){qIdx=0;qScore=0;qLock=false;pintarQuiz()}
+
+/* ═══════════ DIARIO ═══════════ */
+function guardarDiario(){
+  const t=document.getElementById('diarioTxt').value.trim();
+  if(!t){toast('Escribí algo antes de guardar');return}
+  S.diario.unshift({id:Date.now(),f:new Date().toLocaleDateString('es-AR',{day:'numeric',month:'long',year:'numeric'}),t:t});
+  guardar();document.getElementById('diarioTxt').value='';
+  pintarDiario();pintarInicio();pintarMedallas();toast('Entrada guardada');
+}
+function pintarDiario(){
+  const l=document.getElementById('diarioList');
+  if(!S.diario.length){l.innerHTML='<div class="card" style="text-align:center;color:var(--text-dim);font-size:.92rem">Todavía no hay entradas. Escribí la primera arriba: qué cambió, qué te costó, qué no hiciste y por qué.</div>';return}
+  l.innerHTML=S.diario.map(e=>'<div class="entry"><header><time>'+e.f+'</time><button class="clickable" onclick="borrarEntrada('+e.id+')">Borrar</button></header><p>'+e.t.replace(/</g,'&lt;')+'</p></div>').join('');
+}
+function borrarEntrada(id){S.diario=S.diario.filter(e=>e.id!==id);guardar();pintarDiario();pintarInicio();toast('Entrada borrada')}
+
+/* ═══════════ MEDALLAS ═══════════ */
+function pintarMedallas(){
+  const c=document.getElementById('medals');c.innerHTML='';
+  MEDALLAS.forEach(m=>{
+    const on=m.f(S);
+    const d=document.createElement('div');d.className='medal'+(on?' on':'');
+    d.innerHTML='<i>'+m.i+'</i><b>'+m.t+'</b><small>'+m.d+'</small>';
+    c.appendChild(d);
+  });
+  const el=document.getElementById('stMedallas');if(el)el.textContent=MEDALLAS.filter(m=>m.f(S)).length;
+}
+
+
+/* ═══════════ LECTOR DEL LIBRO ═══════════ */
+const APP_VER='2.0';
+function L(){S.libro=Object.assign({leidas:{},campos:{},checks:{},tr:{},ultima:'',fs:1},S.libro||{});return S.libro}
+function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+
+function seccionesTodas(){
+  const out=[];
+  GRUPOS.forEach(([g])=>{
+    if(g==='dias'){
+      DIAS.forEach(d=>out.push({id:'dia-'+d.n,g:'dias',k:'DÍA '+d.n+' DE 21 · '+ETAPAS[d.etapa].t.toUpperCase(),t:d.t,m:(d.h+' · '+d.min).toUpperCase(),dia:d.n}));
+    }else{
+      LIBRO.filter(s=>s.g===g).forEach(s=>out.push(s));
+    }
+  });
+  return out;
+}
+const SECS=seccionesTodas();
+function secPorId(id){return SECS.find(s=>s.id===id)}
+
+function pintarLibro(){
+  const q=(document.getElementById('libSearch')||{}).value||'';
+  const nq=q.trim().toLowerCase();
+  const cont=document.getElementById('libIndex');cont.innerHTML='';
+  const lee=L();
+  const leidas=SECS.filter(s=>lee.leidas[s.id]).length;
+  const pct=Math.round(leidas/SECS.length*100);
+  document.getElementById('libFill').style.width=pct+'%';
+  document.getElementById('libPct').textContent=leidas+' de '+SECS.length+' secciones leídas · '+pct+'%';
+  const ult=lee.ultima&&secPorId(lee.ultima);
+  const bs=document.getElementById('btnSeguir');
+  bs.style.display=ult?'inline-flex':'none';
+  if(ult)bs.textContent='Seguir leyendo: '+ult.t;
+  GRUPOS.forEach(([g,titulo,icono])=>{
+    let items=SECS.filter(s=>s.g===g);
+    if(nq)items=items.filter(s=>(s.t+' '+s.k+' '+s.m+' '+JSON.stringify(s.b||'')).toLowerCase().includes(nq));
+    if(!items.length)return;
+    const ok=items.filter(s=>lee.leidas[s.id]).length;
+    const d=document.createElement('div');
+    d.className='grp'+(nq||g===abiertoGrupo?' open':'');
+    d.innerHTML='<button class="gh clickable"><i>'+icono+'</i><b>'+titulo+'</b><small>'+ok+'/'+items.length+'</small></button><div class="glist"></div>';
+    d.querySelector('.gh').onclick=()=>{abiertoGrupo=(abiertoGrupo===g?'':g);pintarLibro()};
+    const l=d.querySelector('.glist');
+    items.forEach(s=>{
+      const b=document.createElement('button');
+      b.className='sec-b clickable'+(lee.leidas[s.id]?' leida':'');
+      b.innerHTML='<span class="dot">✓</span><span><b>'+s.t+'</b><small>'+s.k+'</small></span>';
+      b.onclick=()=>abrirSeccion(s.id);
+      l.appendChild(b);
+    });
+    cont.appendChild(d);
+  });
+  if(!cont.children.length)cont.innerHTML='<div class="card" style="text-align:center;color:var(--text-dim);font-size:.92rem">No encontré nada con esas palabras.</div>';
+}
+let abiertoGrupo='libro';
+
+function cambiarFuente(d){
+  const lee=L();lee.fs=Math.min(3,Math.max(1,(lee.fs||1)+d));guardar();aplicarFuente();
+  toast(lee.fs===1?'Letra normal':lee.fs===2?'Letra grande':'Letra más grande');
+}
+function aplicarFuente(){
+  const r=document.getElementById('lecturaBox');if(!r)return;
+  r.className='reader fs'+(L().fs||1);
+}
+
+/* ——— bloques ——— */
+function bloqueHTML(b,sec){
+  const c=L();
+  switch(b.t){
+    case 'p':return '<p class="lp">'+b.x+'</p>';
+    case 'h':return '<h3 class="lh">'+b.x+'</h3>';
+    case 'ol':return '<ol class="steps">'+b.x.map(i=>'<li><span>'+i+'</span></li>').join('')+'</ol>';
+    case 'ul':return '<ul class="lul">'+b.x.map(i=>'<li>'+i+'</li>').join('')+'</ul>';
+    case 'q':return '<div class="lq">'+b.x+'</div>';
+    case 'tip':return '<div class="tip"><b>Tip.</b> '+b.x+'</div>';
+    case 'why':return '<div class="why"><h4>Por qué importa</h4>'+b.x+'</div>';
+    case 'kv':return '<div class="kvt">'+b.x.map(r=>'<div><b>'+r[0]+'</b><span>'+r[1]+'</span></div>').join('')+'</div>';
+    case 'num':return b.x.map((r,i)=>'<div class="numc"><u>'+((b.s||1)+i)+'</u><div><b>'+r[0]+'</b><p>'+r[1]+'</p></div></div>').join('');
+    case 'goto':return '<button class="btn" style="width:100%;margin-bottom:16px" onclick="go(\''+b.v+'\')">'+b.x+'</button>';
+    case 'chk':{
+      const on=c.checks[b.id]||[];
+      return '<div style="margin-bottom:16px">'+b.x.map((t,i)=>
+        '<button class="check clickable'+(on.includes(i)?' on':'')+'" onclick="tgChk(\''+b.id+'\','+i+')"><span class="box">✓</span><span>'+t+'</span></button>').join('')+'</div>';
+    }
+    case 'fill':return '<div class="fld"><label>'+b.x+'</label><input value="'+esc(c.campos[b.id])+'" placeholder="'+esc(b.ph||'')+'" oninput="setCampo(\''+b.id+'\',this.value)"></div>';
+    case 'area':return '<div class="fld"><label>'+b.x+'</label><textarea rows="'+(b.rows||5)+'" placeholder="'+esc(b.ph||'')+'" oninput="setCampo(\''+b.id+'\',this.value)">'+esc(c.campos[b.id])+'</textarea></div>';
+    case 'timer':return timerHTML(b.x,b.seg,'t0');
+    case 'bloques5':return b.x.map((r,i)=>'<div class="card"><div class="label">BLOQUE '+(i+1)+' · CINCO MINUTOS</div><h3 class="lh" style="margin-top:0">'+r[0]+'</h3><p class="lp">'+r[1]+'</p>'+timerHTML('5 minutos',300,'b'+i)+'<button class="check clickable'+(((c.checks['b7_bloques']||[]).includes(i))?' on':'')+'" onclick="tgChk(\'b7_bloques\','+i+')"><span class="box">✓</span><span>Bloque hecho</span></button></div>').join('');
+    case 'tracker30':return tracker30HTML();
+    case 'tracker-resumen':return trackerResumenHTML();
+    default:return '';
+  }
+}
+function timerHTML(rot,seg,k){
+  return '<div class="tmr" data-seg="'+seg+'" data-k="'+k+'"><b id="tm-'+k+'">'+fmt(seg)+'</b><span>'+rot+'</span>'+
+    '<button class="btn sm" onclick="tmrToggle(\''+k+'\','+seg+',this)">Empezar</button>'+
+    '<button class="btn sm ghost" onclick="tmrReset(\''+k+'\','+seg+')">Reiniciar</button></div>';
+}
+function fmt(s){const m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+const TMR={};
+function tmrToggle(k,seg,btn){
+  if(TMR[k]){clearInterval(TMR[k].i);delete TMR[k];btn.textContent='Seguir';return}
+  let rest=TMR[k+'_r']!=null?TMR[k+'_r']:seg;
+  btn.textContent='Pausar';
+  TMR[k]={i:setInterval(()=>{
+    rest--;TMR[k+'_r']=rest;
+    const el=document.getElementById('tm-'+k);if(el)el.textContent=fmt(Math.max(0,rest));
+    if(rest<=0){clearInterval(TMR[k].i);delete TMR[k];TMR[k+'_r']=null;toast('Se terminó el tiempo. Parás acá.');if(navigator.vibrate)navigator.vibrate([200,100,200]);if(btn)btn.textContent='Empezar'}
+  },1000)};
+}
+function tmrReset(k,seg){
+  if(TMR[k]){clearInterval(TMR[k].i);delete TMR[k]}
+  TMR[k+'_r']=null;
+  const el=document.getElementById('tm-'+k);if(el)el.textContent=fmt(seg);
+}
+function tgChk(id,i){
+  const c=L();const a=c.checks[id]||[];
+  const j=a.indexOf(i);j>-1?a.splice(j,1):a.push(i);
+  c.checks[id]=a;guardar();
+  const s=secPorId(L().ultima);if(vista==='lectura'&&s)pintarLectura(s.id,true);
+}
+function setCampo(id,v){const c=L();c.campos[id]=v;guardar()}
+
+/* ——— tracker de 30 días ——— */
+function tracker30HTML(){
+  const c=L();let h='<div class="tr30"><table><thead><tr><th style="text-align:left">DÍA</th><th>H1</th><th>H2</th><th>H3</th><th>NOTA</th></tr></thead><tbody>';
+  for(let d=1;d<=30;d++){
+    const r=c.tr[d]||{h:[],n:''};
+    h+='<tr><td class="d">Día '+d+'</td>';
+    for(let k=0;k<3;k++)h+='<td><button class="clickable'+(r.h&&r.h.includes(k)?' on':'')+'" onclick="tgTr('+d+','+k+')">✓</button></td>';
+    h+='<td><input value="'+esc(r.n)+'" placeholder="una palabra" oninput="setTrNota('+d+',this.value)"></td></tr>';
+  }
+  return h+'</tbody></table></div>';
+}
+function tgTr(d,k){
+  const c=L();const r=c.tr[d]||{h:[],n:''};r.h=r.h||[];
+  const j=r.h.indexOf(k);j>-1?r.h.splice(j,1):r.h.push(k);
+  c.tr[d]=r;guardar();pintarLectura('b5-tracker',true);
+}
+function setTrNota(d,v){const c=L();const r=c.tr[d]||{h:[],n:''};r.n=v;c.tr[d]=r;guardar()}
+function trackerResumenHTML(){
+  const c=L();const tot=[0,0,0];let mejor=0;
+  for(let k=0;k<3;k++){let r=0;
+    for(let d=1;d<=30;d++){const x=c.tr[d]&&c.tr[d].h&&c.tr[d].h.includes(k);
+      if(x){tot[k]++;r++;if(r>mejor)mejor=r}else r=0}}
+  const n=i=>esc(c.campos['b5_h'+(i+1)]||('Hábito '+(i+1)));
+  return '<div class="resum">'+[0,1,2].map(i=>'<div><b>'+tot[i]+'</b><small>'+n(i).toUpperCase()+'</small></div>').join('')+
+    '<div><b>'+mejor+'</b><small>RACHA MÁS LARGA</small></div></div>'+
+    '<p class="lp">Cada número es sobre 30 días. La racha más larga es la cadena que no quisiste cortar.</p>';
+}
+
+/* ——— pantalla de lectura ——— */
+function pintarLectura(id,silencioso){
+  const s=secPorId(id);if(!s)return;
+  const i=SECS.findIndex(x=>x.id===id);
+  const prev=SECS[i-1],next=SECS[i+1];
+  let cuerpo='';
+  if(s.dia){
+    const d=DIAS.find(x=>x.n===s.dia);
+    cuerpo='<div class="card"><div class="label">QUÉ HACER HOY</div><ol class="steps">'+d.pasos.map(p=>'<li><span>'+p+'</span></li>').join('')+'</ol>'+
+      '<div class="why"><h4>Por qué importa</h4>'+d.why+'</div><div class="tip"><b>Tip.</b> '+d.tip+'</div></div>'+
+      '<button class="btn" style="width:100%" onclick="abrirDia('+d.n+')">Abrir el día '+d.n+' en el programa</button>';
+  }else{
+    cuerpo=(s.b||[]).map(b=>bloqueHTML(b,s)).join('');
+  }
+  const leida=L().leidas[id];
+  document.getElementById('lecturaBox').innerHTML=
+    '<div class="read-meta">'+s.k+'</div>'+
+    '<h2 class="h-view">'+s.t+'</h2>'+
+    '<div class="day-meta">'+s.m+'</div>'+
+    cuerpo+
+    '<button class="btn '+(leida?'gold':'ghost')+'" style="width:100%;margin-top:18px" onclick="tgLeida(\''+id+'\')">'+(leida?'✓ Sección leída':'Marcar como leída')+'</button>'+
+    '<div class="read-nav">'+
+      '<button class="btn ghost sm" style="flex:1" '+(prev?'':'disabled')+' onclick="abrirSeccion(\''+(prev?prev.id:'')+'\')">← Anterior</button>'+
+      '<button class="btn ghost sm" style="flex:1" '+(next?'':'disabled')+' onclick="abrirSeccion(\''+(next?next.id:'')+'\')">Siguiente →</button>'+
+    '</div>';
+  aplicarFuente();
+  if(!silencioso)window.scrollTo({top:0,behavior:'smooth'});
+}
+function abrirSeccion(id){
+  if(!id)return;
+  const c=L();c.ultima=id;c.leidas[id]=true;guardar();
+  pintarLectura(id);go('lectura');pintarLibro();
+}
+function tgLeida(id){
+  const c=L();c.leidas[id]?delete c.leidas[id]:c.leidas[id]=true;guardar();
+  pintarLectura(id,true);pintarLibro();
+}
+function seguirLeyendo(){const c=L();abrirSeccion(c.ultima||SECS[0].id)}
+
+/* ═══════════ COPIA DE SEGURIDAD ═══════════ */
+function exportarDatos(){
+  const paq={app:'reset21',version:APP_VER,fecha:new Date().toISOString(),datos:S};
+  const b=new Blob([JSON.stringify(paq,null,1)],{type:'application/json'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download='reset21-copia-'+hoy()+'.json';document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(u);a.remove()},1500);
+  S.backup=hoy();guardar();infoBackup();
+  toast('Copia descargada. Guardala en el mail o en Drive.');
+}
+function importarDatos(inp){
+  const f=inp.files&&inp.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const p=JSON.parse(r.result);
+      const d=p&&p.datos?p.datos:p;
+      if(!d||typeof d!=='object'||!('dias' in d))throw 0;
+      if(!confirm('Esto reemplaza lo que tenés ahora en este teléfono por los datos del archivo. ¿Seguimos?')){inp.value='';return}
+      S=Object.assign(base(),d);guardar();
+      toast('Copia cargada. Abriendo tus datos…');
+      setTimeout(()=>location.reload(),900);
+    }catch(e){toast('Ese archivo no es una copia de RESET 21.')}
+    inp.value='';
+  };
+  r.readAsText(f);
+}
+function borrarTodo(){
+  if(!confirm('Se borra todo lo guardado en este teléfono y no se puede recuperar. ¿Bajaste la copia?'))return;
+  if(!confirm('Última confirmación: ¿borro todos tus datos de RESET 21?'))return;
+  localStorage.removeItem(KEY);location.reload();
+}
+function infoBackup(){
+  const el=document.getElementById('backupInfo');if(!el)return;
+  el.innerHTML=S.backup?('<b>Última copia:</b> '+S.backup+'.'):'<b>Todavía no bajaste ninguna copia.</b> Si perdés el teléfono, se pierde lo que escribiste.';
+}
+
+/* ═══════════ INSTALACIÓN (PWA) ═══════════ */
+let promptInstalar=null;
+const standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();promptInstalar=e;
+  if(!standalone){const b=document.getElementById('btnInstall');if(b)b.classList.add('on');}
+});
+window.addEventListener('appinstalled',()=>{
+  promptInstalar=null;const b=document.getElementById('btnInstall');if(b)b.classList.remove('on');
+  toast('Listo: ya la tenés instalada.');
+});
+function instalar(){
+  if(promptInstalar){
+    promptInstalar.prompt();
+    promptInstalar.userChoice.then(()=>{promptInstalar=null;const b=document.getElementById('btnInstall');if(b)b.classList.remove('on')});
+    return;
+  }
+  if(standalone){toast('Ya está instalada en este teléfono.');return}
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  abrirModal(ios?
+    '<h3>Instalar en iPhone</h3><p>Desde Safari, en tres pasos:</p><ol><li>Tocá el botón <b>Compartir</b> (el cuadradito con la flecha hacia arriba, abajo en el medio).</li><li>Bajá y elegí <b>Agregar a inicio</b>.</li><li>Tocá <b>Agregar</b> arriba a la derecha.</li></ol><p>Te queda el ícono de RESET 21 en la pantalla, igual que cualquier otra app.</p>'
+    :'<h3>Instalar la app</h3><p>Abrila en Chrome y:</p><ol><li>Tocá los <b>tres puntitos</b> arriba a la derecha.</li><li>Elegí <b>Instalar aplicación</b> o <b>Agregar a pantalla principal</b>.</li><li>Confirmá con <b>Instalar</b>.</li></ol><p>Si no te aparece la opción, cerrá y volvé a abrir la página: el navegador la habilita después de unos segundos.</p>');
+}
+function abrirModal(html){
+  document.getElementById('modalBox').innerHTML=html+'<button class="btn" style="width:100%;margin-top:16px" onclick="cerrarModal(true)">Entendido</button>';
+  document.getElementById('modal').classList.add('on');
+}
+function cerrarModal(e){
+  if(e===true||e.target.id==='modal')document.getElementById('modal').classList.remove('on');
+}
+
+/* ═══════════ SERVICE WORKER ═══════════ */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('service-worker.js').then(reg=>{
+      reg.addEventListener('updatefound',()=>{
+        const sw=reg.installing;if(!sw)return;
+        sw.addEventListener('statechange',()=>{
+          if(sw.state==='installed'&&navigator.serviceWorker.controller){
+            document.getElementById('updBar').classList.add('on');
+          }
+        });
+      });
+      setInterval(()=>reg.update(),60*60*1000);
+    }).catch(()=>{});
+  });
+}
+
+/* ═══════════ ARRANQUE ═══════════ */
+(function init(){
+  document.documentElement.setAttribute('data-theme',S.tema||'dark');
+  document.getElementById('btnTheme').textContent=(S.tema||'dark')==='dark'?'🌙':'☀️';
+  pintarNav();pintarChips();pintarDias();pintarInicio();
+  pintarHabitos('habList');pintarTracker();pintarAgua();pintarComidas();
+  pintarConceptos();pintarFrases();pintarRuleta();pintarTest();pintarQuiz();
+  pintarDiario();pintarMedallas();pintarLibro();infoBackup();
+  const av=document.getElementById('appVer');if(av)av.textContent=APP_VER;
+  if(!standalone){const b=document.getElementById('btnInstall');if(b)b.classList.add('on');}
+  const at=(location.hash||'').replace('#','');
+  if(at){
+    S.visto=true;guardar();
+    document.getElementById('welcome').style.display='none';document.getElementById('app').classList.add('on');
+    if(at==='hoy')irAlDiaDeHoy();
+    else if(at==='libro')go('libro');
+    else if(at==='caotico')abrirSeccion('b7-veinte');
+  }
+  if(S.visto){document.getElementById('welcome').style.display='none';document.getElementById('app').classList.add('on')}
+})();
+</script>
+</body>
+</html>

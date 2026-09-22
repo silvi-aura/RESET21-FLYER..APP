@@ -880,7 +880,7 @@ async function validarCodigo(ev){
     var ref=dbFlyer.collection('codigos').doc(codigo);
     var snap=await ref.get();
     if(!snap.exists){
-      err.textContent='Código inválido. Revisá que esté bien escrito.';
+      err.textContent='Código inválido. Revisá que esté bien escrito. [debug: busqué "'+codigo+'"]';
     }else if(snap.data().usado===true){
       err.textContent='Este código ya fue usado. Si es tuyo, escribinos por WhatsApp.';
     }else{
@@ -889,7 +889,7 @@ async function validarCodigo(ev){
       cerrarGate();
     }
   }catch(e){
-    err.textContent='No pudimos verificar el código. Revisá tu conexión e intentá de nuevo.';
+    err.textContent='No pudimos verificar el código. [debug: '+(e&&e.message?e.message:String(e))+']';
   }
   btn.disabled=false;btn.textContent='Ingresar';
   return false;

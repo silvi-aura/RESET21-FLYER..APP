@@ -880,7 +880,8 @@ async function validarCodigo(ev){
     var ref=dbFlyer.collection('codigos').doc(codigo);
     var snap=await ref.get();
     if(!snap.exists){
-      err.textContent='Código inválido. Revisá que esté bien escrito. [debug: busqué "'+codigo+'"]';
+      var cods=codigo.split('').map(function(c){return c.charCodeAt(0)}).join(',');
+      err.textContent='Código inválido. Revisá que esté bien escrito. [debug: "'+codigo+'" len:'+codigo.length+' codes:'+cods+']';
     }else if(snap.data().usado===true){
       err.textContent='Este código ya fue usado. Si es tuyo, escribinos por WhatsApp.';
     }else{

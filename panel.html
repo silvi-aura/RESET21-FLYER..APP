@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RESET21 · Panel de códigos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#da5db0;--accent:#7f45e3;--gold:#e6c17a;
+  --bg:#140f1b;--surface:#221a2e;--surface-2:#2b2139;
+  --line:rgba(230,193,122,.18);--text:#f6f0f7;--text-soft:#c3b6cf;--text-dim:#8d7fa0;
+  --grad:linear-gradient(120deg,var(--brand),var(--accent));
+  --ok:#6fd3a5;--err:#e8869a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Jost',system-ui,sans-serif;font-weight:300;min-height:100vh;padding:22px 16px 60px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.8rem;margin-bottom:4px}
+.sub{color:var(--text-dim);font-size:.85rem;margin-bottom:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;max-width:460px}
+label{display:block;font-size:.78rem;color:var(--text-dim);letter-spacing:.05em;margin-bottom:5px;margin-top:12px}
+label:first-child{margin-top:0}
+input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-size:1rem;font-family:inherit}
+button{width:100%;min-height:46px;border-radius:50px;border:none;background:var(--grad);color:#fff;font-weight:500;font-size:.95rem;letter-spacing:.03em;margin-top:16px;cursor:pointer}
+button.ghost{background:none;border:1px solid var(--line);color:var(--text-soft)}
+button.sm{width:auto;min-height:34px;padding:0 14px;font-size:.78rem;margin:0}
+.msg{font-size:.85rem;margin-top:10px;min-height:1.2em}
+.msg.ok{color:var(--ok)}
+.msg.err{color:var(--err)}
+table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:6px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+th{color:var(--text-dim);font-weight:400;font-size:.72rem;letter-spacing:.05em}
+.tag{padding:3px 9px;border-radius:50px;font-size:.72rem}
+.tag.libre{background:rgba(111,211,165,.15);color:var(--ok)}
+.tag.usado{background:rgba(232,134,154,.15);color:var(--err)}
+.row-actions{display:flex;gap:6px}
+#panelApp{display:none}
+</style>
+</head>
+<body>
+
+<h1>RESET21 <span style="color:var(--brand)">· Panel de códigos</span></h1>
+<p class="sub">Canal Flyer / venta privada por WhatsApp</p>
+
+<div id="loginBox" class="card">
+  <label>Email</label>
+  <input id="email" type="email" autocomplete="username" value="silvinayacob4@gmail.com">
+  <label>Contraseña</label>
+  <input id="pass" type="password" autocomplete="current-password">
+  <button onclick="login()">Ingresar</button>
+  <p id="loginMsg" class="msg"></p>
+</div>
+
+<div id="panelApp">
+  <div class="card">
+    <label>Nombre de la clienta + números (el código que le vas a pasar)</label>
+    <input id="nuevoCodigo" placeholder="Ej: MARIA4521">
+    <button onclick="crearCodigo()">Crear código</button>
+    <p id="crearMsg" class="msg"></p>
+  </div>
+
+  <div class="card" style="max-width:640px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <label style="margin:0">Códigos existentes</label>
+      <button class="ghost sm" onclick="cargarLista()">↻ Actualizar</button>
+    </div>
+    <div id="listaBox"><p class="msg">Cargando…</p></div>
+  </div>
+
+  <button class="ghost" style="max-width:460px" onclick="logout()">Cerrar sesión</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+var firebaseConfig={
+  apiKey:"AIzaSyDRFDQu8cVJ6rozrJbVdEErdvdwNkXqgZ0",
+  authDomain:"reset21-612e9.firebaseapp.com",
+  projectId:"reset21-612e9",
+  storageBucket:"reset21-612e9.firebasestorage.app",
+  messagingSenderId:"107440225741",
+  appId:"1:107440225741:web:0c2069c98d9d5e8ce91884"
+};
+firebase.initializeApp(firebaseConfig);
+var db=firebase.firestore();
+var auth=firebase.auth();
+
+auth.onAuthStateChanged(function(u){
+  document.getElementById('loginBox').style.display=u?'none':'block';
+  document.getElementById('panelApp').style.display=u?'block':'none';
+  if(u)cargarLista();
+});
+
+function login(){
+  var email=document.getElementById('email').value.trim();
+  var pass=document.getElementById('pass').value;
+  var msg=document.getElementById('loginMsg');
+  msg.className='msg';msg.textContent='Ingresando…';
+  auth.signInWithEmailAndPassword(email,pass).catch(function(e){
+    msg.className='msg err';msg.textContent=e.message;
+  });
+}
+function logout(){auth.signOut()}
+
+function limpiarCodigo(v){
+  return (v||'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
+}
+
+async function crearCodigo(){
+  var input=document.getElementById('nuevoCodigo');
+  var msg=document.getElementById('crearMsg');
+  var codigo=limpiarCodigo(input.value);
+  if(!codigo){msg.className='msg err';msg.textContent='Escribí un nombre/código.';return}
+  msg.className='msg';msg.textContent='Creando…';
+  try{
+    var ref=db.collection('codigos').doc(codigo);
+    var existente=await ref.get();
+    if(existente.exists){
+      msg.className='msg err';msg.textContent='Ese código ya existe (usado: '+existente.data().usado+').';
+      return;
+    }
+    await ref.set({usado:false,fechaCreacion:firebase.firestore.FieldValue.serverTimestamp()});
+    msg.className='msg ok';msg.textContent='Código "'+codigo+'" creado. Ya se lo podés pasar a la clienta.';
+    input.value='';
+    cargarLista();
+  }catch(e){
+    msg.className='msg err';msg.textContent='Error: '+e.message;
+  }
+}
+
+async function cargarLista(){
+  var box=document.getElementById('listaBox');
+  box.innerHTML='<p class="msg">Cargando…</p>';
+  try{
+    var qs=await db.collection('codigos').get();
+    if(qs.empty){box.innerHTML='<p class="msg">Todavía no creaste ningún código.</p>';return}
+    var filas=[];
+    qs.forEach(function(d){
+      var v=d.data();
+      filas.push('<tr><td>'+d.id+'</td><td><span class="tag '+(v.usado?'usado':'libre')+'">'+(v.usado?'Usado':'Libre')+'</span></td>'+
+        '<td class="row-actions">'+
+        (v.usado?'<button class="ghost sm" onclick="reiniciar(\''+d.id+'\')">Reiniciar</button>':'')+
+        '<button class="ghost sm" onclick="borrar(\''+d.id+'\')">Borrar</button>'+
+        '</td></tr>');
+    });
+    box.innerHTML='<table><tr><th>Código</th><th>Estado</th><th></th></tr>'+filas.join('')+'</table>';
+  }catch(e){
+    box.innerHTML='<p class="msg err">Error al listar: '+e.message+'</p>';
+  }
+}
+
+async function reiniciar(id){
+  await db.collection('codigos').doc(id).update({usado:false});
+  cargarLista();
+}
+async function borrar(id){
+  if(!confirm('¿Borrar el código "'+id+'"? No se puede deshacer.'))return;
+  await db.collection('codigos').doc(id).delete();
+  cargarLista();
+}
+</script>
+</body>
+</html>

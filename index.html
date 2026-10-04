@@ -552,15 +552,16 @@ ol.steps li b{color:var(--text);font-weight:500}
   <form id="gateForm" onsubmit="return validarCodigo(event)" style="position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:320px">
     <input id="gateInput" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" placeholder="Tu código" style="width:100%;text-align:center;letter-spacing:.14em;font-size:1.05rem;padding:14px 16px;border-radius:50px;border:1px solid var(--line);background:var(--surface);color:var(--text)">
     <button class="btn-start" id="gateBtn" type="submit" style="width:100%">Ingresar</button>
-    <p id="gateError" style="color:#e8869a;font-size:.82rem;min-height:1.2em;max-width:28ch"></p>
+    <p id="gateError" role="status" aria-live="polite" style="color:#e8869a;font-size:.82rem;min-height:1.2em;max-width:30ch"></p>
+    <p style="font-size:.76rem;color:var(--text-dim);max-width:30ch;margin-top:-6px">Tu código es personal y queda asociado a tu celular. No importa si lo escribís en mayúscula o minúscula.</p>
   </form>
-  <div class="tip" id="gateIOS" style="display:none;position:relative;z-index:5;max-width:320px;margin-top:6px;text-align:left;font-size:.84rem"><b>Si tenés iPhone:</b> primero instalá la app (tocá Compartir <b>⎙</b> y después <b>Agregar a inicio</b>). Abrila desde el ícono y escribí el código ahí adentro, porque el código sirve una sola vez.</div>
+  <div class="tip" id="gateIOS" style="display:none;position:relative;z-index:5;max-width:320px;margin-top:6px;text-align:left;font-size:.84rem"><b>Si tenés iPhone:</b> primero instalá la app: en Safari tocá los tres puntitos o el botón Compartir, y después <b>Agregar a Inicio</b>. Abrila desde el ícono y escribí el código ahí adentro, porque el código sirve una sola vez.</div>
 </div>
 <script>
 (function(){
   try{
-    var v=JSON.parse(localStorage.getItem('reset21_flyer_acceso')||'null');
-    if(v && v.ok){
+    var v=JSON.parse(localStorage.getItem('reset21.acceso.v2')||'null');
+    if(v && v.h && v.dev){
       var g=document.getElementById('gate');
       if(g) g.style.display='none';
     }
@@ -867,57 +868,124 @@ ol.steps li b{color:var(--text);font-weight:500}
   </div>
 </div>
 
-<!-- ══════════ FIREBASE — VALIDACIÓN DE CÓDIGO ══════════ -->
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<!-- ══════════ VALIDACIÓN DEL CÓDIGO (Firebase, sin librerías) ══════════ -->
 <script>
-var firebaseConfig={
-  apiKey:"AIzaSyDRFDQu8cVJ6rozrJbVdEErdvdwNkXqgZ0",
-  authDomain:"reset21-612e9.firebaseapp.com",
-  projectId:"reset21-612e9",
-  storageBucket:"reset21-612e9.firebasestorage.app",
-  messagingSenderId:"107440225741",
-  appId:"1:107440225741:web:0c2069c98d9d5e8ce91884"
-};
-firebase.initializeApp(firebaseConfig);
-var dbFlyer=firebase.firestore();
-var GATE_KEY='reset21_flyer_acceso';
+/* Proyecto de Firebase del canal Flyer de RESET 21 */
+var FB_R21={apiKey:'AIzaSyDRFDQu8cVJ6rozrJbVdEErdvdwNkXqgZ0',projectId:'reset21-612e9'};
+var DBURL_R21='https://firestore.googleapis.com/v1/projects/'+FB_R21.projectId+'/databases/(default)/documents';
+/* La misma SALT y ROUNDS tienen que estar en el panel de códigos */
+var SALT_R21='reset21-flyer-2026', ROUNDS_R21=20000;
+var ACC_KEY_R21='reset21.acceso.v2', DEV_KEY_R21='reset21.dispositivo.v2';
+const RRH = (function () {
+  const K = [0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+  function bytesOf(s) { const u = unescape(encodeURIComponent(s)), o = []; for (let i = 0; i < u.length; i++) o.push(u.charCodeAt(i)); return o; }
+  function sha256(bytes) {
+    let h = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+    const p = bytes.slice(), bl = bytes.length * 8; p.push(0x80); while (p.length % 64 !== 56) p.push(0);
+    for (const v of [Math.floor(bl / 4294967296), bl >>> 0]) p.push((v >>> 24) & 255, (v >>> 16) & 255, (v >>> 8) & 255, v & 255);
+    const w = new Array(64);
+    for (let i = 0; i < p.length; i += 64) {
+      for (let t = 0; t < 16; t++) w[t] = (p[i + 4*t] << 24) | (p[i + 4*t + 1] << 16) | (p[i + 4*t + 2] << 8) | p[i + 4*t + 3];
+      for (let t = 16; t < 64; t++) { const s0 = rotr(w[t-15], 7) ^ rotr(w[t-15], 18) ^ (w[t-15] >>> 3), s1 = rotr(w[t-2], 17) ^ rotr(w[t-2], 19) ^ (w[t-2] >>> 10); w[t] = (w[t-16] + s0 + w[t-7] + s1) | 0; }
+      let [a, b, c, d, e, f, g, hh] = h;
+      for (let t = 0; t < 64; t++) { const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25), ch = (e & f) ^ (~e & g), t1 = (hh + S1 + ch + K[t] + w[t]) | 0, S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22), mj = (a & b) ^ (a & c) ^ (b & c), t2 = (S0 + mj) | 0; hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0; }
+      h = [(h[0]+a)|0,(h[1]+b)|0,(h[2]+c)|0,(h[3]+d)|0,(h[4]+e)|0,(h[5]+f)|0,(h[6]+g)|0,(h[7]+hh)|0];
+    }
+    const o = []; for (const v of h) o.push((v >>> 24) & 255, (v >>> 16) & 255, (v >>> 8) & 255, v & 255); return o;
+  }
+  const hex = b => b.map(x => x.toString(16).padStart(2, '0')).join('');
+  const norm = c => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  function huella(code, salt, rounds) {
+    const n = norm(code); if (!n) return '';
+    let cur = sha256(bytesOf(salt + ':' + n));
+    for (let i = 0; i < rounds; i++) cur = sha256(cur.concat(bytesOf(n + salt)));
+    return hex(cur);
+  }
+  return { sha256, bytesOf, hex, norm, huella };
+})();
 
-function gateGuardar(codigo){
-  try{localStorage.setItem(GATE_KEY,JSON.stringify({ok:true,codigo:codigo,fecha:new Date().toISOString()}))}catch(e){}
+function accGetR21(){try{return JSON.parse(localStorage.getItem(ACC_KEY_R21)||'null')}catch(e){return null}}
+function abrirGate(msg){
+  var g=document.getElementById('gate');if(g)g.style.display='';
+  var err=document.getElementById('gateError');if(err)err.textContent=msg||'';
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(/macintosh/i.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+  var inst=window.navigator.standalone===true||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches);
+  if(ios&&!inst){var t=document.getElementById('gateIOS');if(t)t.style.display='block'}
 }
-function cerrarGate(){
-  var g=document.getElementById('gate');
-  if(g)g.style.display='none';
+function cerrarGate(){var g=document.getElementById('gate');if(g)g.style.display='none'}
+function devIdR21(){
+  var d=null;try{d=localStorage.getItem(DEV_KEY_R21)}catch(e){}
+  if(!d){
+    var a=new Uint8Array(16);try{(window.crypto||window.msCrypto).getRandomValues(a)}catch(e){for(var i=0;i<16;i++)a[i]=Math.floor(Math.random()*256)}
+    d=Array.from(a,function(x){return x.toString(16).padStart(2,'0')}).join('')+Date.now().toString(36);
+    try{localStorage.setItem(DEV_KEY_R21,d)}catch(e){}
+  }
+  return d;
 }
+async function fsGetR21(h){
+  var r=await fetch(DBURL_R21+'/codigos/'+h+'?key='+FB_R21.apiKey,{cache:'no-store'});
+  if(r.status===404)return{nf:true};
+  if(!r.ok)throw new Error('http '+r.status);
+  var j=await r.json(),f=j.fields||{};
+  return{updateTime:j.updateTime,active:!!(f.active&&f.active.booleanValue===true),max:+((f.max&&f.max.integerValue)||0),
+    devices:((f.devices&&f.devices.arrayValue&&f.devices.arrayValue.values)||[]).map(function(v){return v.stringValue})};
+}
+async function fsClaimR21(h,cur,dev){
+  var vals=cur.devices.concat([dev]).map(function(x){return{stringValue:x}});
+  var r=await fetch(DBURL_R21+'/codigos/'+h+'?updateMask.fieldPaths=devices&currentDocument.updateTime='+encodeURIComponent(cur.updateTime)+'&key='+FB_R21.apiKey,
+    {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:{devices:{arrayValue:{values:vals}}}})});
+  return r.ok;
+}
+async function gateCheckR21(code){
+  var h=RRH.huella(code,SALT_R21,ROUNDS_R21),dev=devIdR21();
+  var cur=await fsGetR21(h);
+  if(cur.nf)return{ok:false,why:'nf'};
+  if(!cur.active)return{ok:false,why:'off'};
+  for(var intento=0;intento<2;intento++){
+    if(cur.devices.indexOf(dev)>=0)return{ok:true,h:h,dev:dev};
+    if(cur.devices.length>=cur.max)return{ok:false,why:'full'};
+    if(await fsClaimR21(h,cur,dev))return{ok:true,h:h,dev:dev};
+    cur=await fsGetR21(h);if(cur.nf||!cur.active)return{ok:false,why:cur.nf?'nf':'off'};
+  }
+  return{ok:false,why:'full'};
+}
+var GMSG_R21={
+  nf:'Ese código no es válido. Revisalo y probá de nuevo.',
+  off:'Este código ya no está activo. Escribinos por WhatsApp.',
+  full:'Este código ya está en uso en otro celular. Si cambiaste de teléfono, escribinos por WhatsApp y te lo liberamos.'
+};
+var gateOcupado=false;
 async function validarCodigo(ev){
   ev.preventDefault();
-  var input=document.getElementById('gateInput');
-  var btn=document.getElementById('gateBtn');
-  var err=document.getElementById('gateError');
-  var codigo=(input.value||'').trim().toUpperCase();
+  if(gateOcupado)return false;
+  var input=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
+  var code=input.value||'';
   err.textContent='';
-  if(!codigo){err.textContent='Escribí tu código.';return false}
-  btn.disabled=true;btn.textContent='Verificando…';
-  try{
-    var ref=dbFlyer.collection('codigos').doc(codigo);
-    var snap=await ref.get();
-    if(!snap.exists){
-      var cods=codigo.split('').map(function(c){return c.charCodeAt(0)}).join(',');
-      err.textContent='Código inválido. Revisá que esté bien escrito. [debug: "'+codigo+'" len:'+codigo.length+' codes:'+cods+']';
-    }else if(snap.data().usado===true){
-      err.textContent='Este código ya fue usado. Si es tuyo, escribinos por WhatsApp.';
-    }else{
-      await ref.update({usado:true,fechaUso:firebase.firestore.FieldValue.serverTimestamp(),dispositivo:navigator.userAgent});
-      gateGuardar(codigo);
-      cerrarGate();
-    }
-  }catch(e){
-    err.textContent='No pudimos verificar el código. [debug: '+(e&&e.message?e.message:String(e))+']';
-  }
-  btn.disabled=false;btn.textContent='Ingresar';
+  if(!RRH.norm(code)){err.textContent='Escribí tu código.';input.focus();return false}
+  gateOcupado=true;btn.disabled=true;btn.textContent='Verificando…';
+  await new Promise(function(r){setTimeout(r,30)});
+  var res=null;
+  try{res=await gateCheckR21(code)}
+  catch(e){err.textContent='No pudimos verificar tu código. Revisá tu conexión a internet y probá de nuevo.'}
+  gateOcupado=false;btn.disabled=false;btn.textContent='Ingresar';
+  if(!res)return false;
+  if(res.ok){
+    try{localStorage.setItem(ACC_KEY_R21,JSON.stringify({h:res.h,dev:res.dev,t:Date.now()}))}catch(e){}
+    input.value='';cerrarGate();
+  }else err.textContent=GMSG_R21[res.why];
   return false;
 }
+/* Con internet, se revisa que el código siga activo y asignado a este celular */
+window.addEventListener('load',async function(){
+  var a=accGetR21();if(!a)return;
+  var cur;try{cur=await fsGetR21(a.h)}catch(e){return}
+  var bad=cur.nf||!cur.active||cur.devices.indexOf(a.dev)<0;
+  if(bad){
+    try{localStorage.removeItem(ACC_KEY_R21)}catch(e){}
+    abrirGate((cur.nf||!cur.active)?'Tu acceso ya no está activo. Escribinos por WhatsApp.':'Tu acceso fue liberado. Volvé a escribir tu código para entrar.');
+  }
+});
 </script>
 
 <script>
@@ -1428,7 +1496,7 @@ function pintarMedallas(){
 
 
 /* ═══════════ LECTOR DEL LIBRO ═══════════ */
-const APP_VER='2.1';
+const APP_VER='2.2';
 function L(){S.libro=Object.assign({leidas:{},campos:{},checks:{},tr:{},ultima:'',fs:1},S.libro||{});return S.libro}
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
 

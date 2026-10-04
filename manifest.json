@@ -1,0 +1,27 @@
+{
+  "name": "RESET 21 — Silvi Aura",
+  "short_name": "RESET 21",
+  "description": "Método de 21 días para ordenar tu vida. Ebook completo, 7 bonos y herramientas para sostenerlo.",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#140f1b",
+  "theme_color": "#140f1b",
+  "categories": ["lifestyle", "productivity", "books"],
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "icons/icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any"}
+  ],
+  "shortcuts": [
+    {"name": "El día de hoy", "url": "./index.html#hoy"},
+    {"name": "Leer el libro", "url": "./index.html#libro"},
+    {"name": "Día caótico", "url": "./index.html#caotico"}
+  ]
+}

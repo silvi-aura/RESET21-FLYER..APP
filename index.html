@@ -525,6 +525,20 @@ ol.steps li b{color:var(--text);font-weight:500}
 .upd p{flex:1;font-size:.86rem;color:var(--text-soft)}
 @media(min-width:960px){.upd{left:250px;right:auto;width:380px;bottom:20px}}
 
+/* ============ DUDAS EN INTERNET ============ */
+.duda-fab{
+  position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:65;
+  display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;border-radius:50px;
+  background:var(--grad);color:#fff;font-size:.82rem;font-weight:500;letter-spacing:.03em;
+  box-shadow:0 14px 28px -14px rgba(218,93,176,.95),0 0 0 1px rgba(255,255,255,.12) inset;
+  transition:transform .15s ease;
+}
+.duda-fab i{font-style:normal;font-size:1.1rem;line-height:1}
+.duda-fab:active{transform:scale(.95)}
+@media(min-width:960px){.duda-fab{bottom:24px;right:24px}}
+.duda-acc{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.duda-nota{font-size:.8rem!important;color:var(--text-dim)!important;margin-top:12px;line-height:1.5}
+
 </style>
 </head>
 <body>
@@ -540,6 +554,7 @@ ol.steps li b{color:var(--text);font-weight:500}
     <button class="btn-start" id="gateBtn" type="submit" style="width:100%">Ingresar</button>
     <p id="gateError" style="color:#e8869a;font-size:.82rem;min-height:1.2em;max-width:28ch"></p>
   </form>
+  <div class="tip" id="gateIOS" style="display:none;position:relative;z-index:5;max-width:320px;margin-top:6px;text-align:left;font-size:.84rem"><b>Si tenés iPhone:</b> primero instalá la app (tocá Compartir <b>⎙</b> y después <b>Agregar a inicio</b>). Abrila desde el ícono y escribí el código ahí adentro, porque el código sirve una sola vez.</div>
 </div>
 <script>
 (function(){
@@ -548,6 +563,11 @@ ol.steps li b{color:var(--text);font-weight:500}
     if(v && v.ok){
       var g=document.getElementById('gate');
       if(g) g.style.display='none';
+    }
+    else{
+      var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(/macintosh/i.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+      var inst=window.navigator.standalone===true||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches);
+      if(ios&&!inst){var t=document.getElementById('gateIOS');if(t)t.style.display='block';}
     }
   }catch(e){}
 })();
@@ -829,6 +849,9 @@ ol.steps li b{color:var(--text);font-weight:500}
 <nav class="bottom" id="nav">
   <div class="nav-brand">RESET <span>21</span></div>
 </nav>
+
+<!-- Botón: dudas que no están en la app → búsqueda en internet -->
+<button class="duda-fab" id="btnDuda" onclick="abrirDuda()" aria-label="Buscar una duda en internet"><i>🔎</i>¿Otra duda?</button>
 
 </div>
 
@@ -1405,7 +1428,7 @@ function pintarMedallas(){
 
 
 /* ═══════════ LECTOR DEL LIBRO ═══════════ */
-const APP_VER='2.0';
+const APP_VER='2.1';
 function L(){S.libro=Object.assign({leidas:{},campos:{},checks:{},tr:{},ultima:'',fs:1},S.libro||{});return S.libro}
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
 
@@ -1659,6 +1682,34 @@ function abrirModal(html){
 }
 function cerrarModal(e){
   if(e===true||e.target.id==='modal')document.getElementById('modal').classList.remove('on');
+}
+
+/* ═══════════ DUDAS EN INTERNET ═══════════ */
+function abrirDuda(){
+  document.getElementById('modalBox').innerHTML=
+    '<h3>¿Tenés una duda que no está en la app?</h3>'+
+    '<p>Escribila con tus palabras y te llevo directo a buscarla en internet.</p>'+
+    '<input type="text" id="dudaTxt" enterkeyhint="search" autocomplete="off" placeholder="Ej.: cómo ordenar un placard chico" style="margin-top:14px">'+
+    '<div class="duda-acc">'+
+      '<button class="btn" onclick="buscarDuda()">🌐 Buscar en internet</button>'+
+      '<button class="btn ghost" onclick="cerrarModal(true)">Cerrar</button>'+
+    '</div>'+
+    '<p class="duda-nota">La búsqueda se abre en tu navegador. Lo que tenés guardado en la app no se comparte.</p>';
+  document.getElementById('modal').classList.add('on');
+  const i=document.getElementById('dudaTxt');
+  i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();buscarDuda()}});
+  setTimeout(()=>i.focus(),150);
+}
+function buscarDuda(){
+  const i=document.getElementById('dudaTxt');
+  const q=((i&&i.value)||'').trim();
+  if(!q){toast('Escribí tu duda primero');if(i)i.focus();return}
+  if(!navigator.onLine){toast('Necesitás conexión a internet para buscar');return}
+  const a=document.createElement('a');
+  a.href='https://www.google.com/search?hl=es&q='+encodeURIComponent(q);
+  a.target='_blank';a.rel='noopener';
+  document.body.appendChild(a);a.click();a.remove();
+  cerrarModal(true);
 }
 
 /* ═══════════ SERVICE WORKER ═══════════ */
